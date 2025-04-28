@@ -1,0 +1,17 @@
+create database	gerenciamento_hotel;
+use gerenciamento_hotel;
+
+create table Hospedes(
+idHospede int primary key auto_increment,
+hospede varchar(60),
+senha char(40),
+nascimennto date,
+cpf int(11),
+cnpj varchar(14)
+);
+
+create table ReservaQuartos(
+idReserva int primary key auto_increment,
+idHospede 
+);
+
