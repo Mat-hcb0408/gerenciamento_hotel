@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #10192b;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.projeto_hotel.HelloController">
+   <children>
+
+      <ImageView fx:id="Praia_Imagem" fitHeight="720.0" fitWidth="1280.0" layoutX="23.0" preserveRatio="false" />
+
+      <Pane layoutX="167.0" layoutY="44.0" prefHeight="95.0" prefWidth="950.0" style="-fx-background-color: white; -fx-background-radius: 15;">
+         <children>
+            <Label layoutX="27.0" layoutY="31.0" prefHeight="30.0" prefWidth="83.0" text="LOGIN ">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="302.0" layoutY="-8.0" prefHeight="112.0" text="Bem vindo, Realize aqui seu login ! ">
+               <font>
+                  <Font name="Bell MT Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label layoutX="583.0" layoutY="195.0" prefHeight="25.0" prefWidth="107.0" text="Entrar com" textFill="WHITE">
+         <font>
+            <Font name="Bell MT" size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="538.0" layoutY="244.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="46.0" style="-fx-background-radius: 10;" />
+      <Button layoutX="602.0" layoutY="244.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="46.0" style="-fx-background-radius: 10;" />
+      <Button layoutX="663.0" layoutY="244.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="46.0" style="-fx-background-radius: 10;" />
+      <Label layoutX="171.0" layoutY="345.0" prefHeight="30.0" prefWidth="177.0" text="Entrar com email" textFill="WHITE">
+         <font>
+            <Font name="Bell MT Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextField layoutX="171.0" layoutY="398.0" prefHeight="25.0" prefWidth="950.0" style="-fx-background-radius: 5;" />
+      <Label layoutX="171.0" layoutY="457.0" prefHeight="30.0" prefWidth="164.0" text="Entrar com senha" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <PasswordField layoutX="167.0" layoutY="500.0" prefHeight="25.0" prefWidth="950.0" style="-fx-background-radius: 5;" />
+      <Button layoutX="568.0" layoutY="559.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="114.0" text="Entrar" />
+      <Label layoutX="418.0" layoutY="618.0" text="Não possui uma conta ? Cadastre se agora mesmo !" textFill="WHITE">
+         <font>
+            <Font name="Bell MT" size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="568.0" layoutY="661.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="114.0" text="Cadastre-se" />
+
+   </children>
+</AnchorPane>
