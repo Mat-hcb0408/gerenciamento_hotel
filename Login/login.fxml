@@ -12,6 +12,7 @@
    </stylesheets>
 
    <children>
+      <ImageView fx:id="Fundo_Praia" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="false" />
 
       <!-- Caixa de login -->
       <Pane layoutX="167.0" layoutY="44.0" prefHeight="95.0" prefWidth="950.0" style="-fx-background-color: white; -fx-background-radius: 15;">
