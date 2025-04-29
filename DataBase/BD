@@ -1,32 +1,45 @@
-create database	gerenciamento_hotel;
+create database gerenciamento_hotel;
 use gerenciamento_hotel;
 
-create table Hospedes(
-idHospede int primary key auto_increment,
-hospede varchar(60),
-senha char(40),
-nascimennto date,
-gmail char(150),
-cpf int(11),
-cnpj varchar(14)
+create table hospedes (
+    id_hospede int primary key auto_increment,
+    nome varchar(60),
+    senha varchar(255),
+    nascimento date,
+    email VARCHAR(150) UNIQUE,
+    tipo_pessoa ENUM('Física', 'Jurídica'),
+    cpf char(11),
+    cnpj varchar(14)
 );
 
-create table Quartos(
-idQuarto int primary key auto_increment,
-nomeQuarto char(150),
-camaCasalQuarto int,
-camaSolteiroQuarto int,
-quantPessoas int,
-statusQuarto char(10),
-precoQuarto double
+create table quartos (
+    id_quarto int primary key auto_increment,
+    nome_quarto varchar(150),
+    cama_casal_quarto int,
+    cama_solteiro_quarto int,
+    quant_pessoas int,
+    status_quarto ENUM('livre', 'ocupado', 'manutencao'),
+    preco_quarto double
 );
 
-create table ReservaQuartos(
-idReserva int primary key auto_increment,
-idHospede int,
-idQuarto int,
-inicioDataReserva date,
-fimDataReserva date,
-foreign key (idHospede) references Hospedes(idHospede),
-foreign key (idQuarto) references Quartos(IdQuarto)
+create table pagamentos (
+    id_pagamento int primary key auto_increment,
+    data_pagamento date,
+    descricao_pagamento varchar(200),
+    tipo_despesa varchar(50),
+    preco_quarto DECIMAL(10,2),
+	valor_pagamento DECIMAL(10,2),
+	total_pagamento DECIMAL(10,2)
+);
+
+create table reserva_quartos (
+    id_reserva int primary key auto_increment,
+    id_hospede int,
+    id_quarto int,
+    id_pagamento int,
+    inicio_data_reserva date,
+    fim_data_reserva date,
+    foreign key (id_hospede) references hospedes(id_hospede),
+    foreign key (id_quarto) references quartos(id_quarto),
+    foreign key (id_pagamento) references pagamentos(id_pagamento)
 );
