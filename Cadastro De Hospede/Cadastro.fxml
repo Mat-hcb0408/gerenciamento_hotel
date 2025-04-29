@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #10192b;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #10192b;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.projeto_hotel.HelloController">
 
    <children>
+      <ImageView fx:id="Fundo_Praia" fitHeight="720.0" fitWidth="1299.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="false" />
+
       <Pane layoutX="165.0" layoutY="43.0" prefHeight="95.0" prefWidth="950.0" style="-fx-background-color: white; -fx-background-radius: 15;">
          <children>
             <Label layoutX="21.0" layoutY="30.0" prefHeight="30.0" prefWidth="300.0" text="Cadastro de Hóspede">
@@ -63,6 +66,6 @@
          </font>
       </Label>
       <TextField layoutX="438.0" layoutY="579.0" prefHeight="30.0" prefWidth="350.0" />
-      <Label layoutX="596.0" layoutY="554.0" text="O limite da senha é de 40 caracteres" textFill="WHITE" />
+      <Label layoutX="626.0" layoutY="554.0" prefHeight="30.0" prefWidth="162.0" text="O minimo de caracteres são 8" textFill="WHITE" />
    </children>
 </AnchorPane>
