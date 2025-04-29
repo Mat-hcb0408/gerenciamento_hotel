@@ -6,12 +6,27 @@ idHospede int primary key auto_increment,
 hospede varchar(60),
 senha char(40),
 nascimennto date,
+gmail char(150),
 cpf int(11),
 cnpj varchar(14)
 );
 
-create table ReservaQuartos(
-idReserva int primary key auto_increment,
-idHospede 
+create table Quartos(
+idQuarto int primary key auto_increment,
+nomeQuarto char(150),
+camaCasalQuarto int,
+camaSolteiroQuarto int,
+quantPessoas int,
+statusQuarto char(10),
+precoQuarto double
 );
 
+create table ReservaQuartos(
+idReserva int primary key auto_increment,
+idHospede int,
+idQuarto int,
+inicioDataReserva date,
+fimDataReserva date,
+foreign key (idHospede) references Hospedes(idHospede),
+foreign key (idQuarto) references Quartos(IdQuarto)
+);
