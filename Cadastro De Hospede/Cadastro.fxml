@@ -1,64 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #10192b;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
 
-    <children>
-
-        <ImageView fx:id="Imagempraia.jpg" fitHeight="720.0" fitWidth="1280.0" preserveRatio="false" />
-
-        <Pane layoutX="167.0" layoutY="44.0" prefHeight="95.0" prefWidth="950.0" style="-fx-background-color: white; -fx-background-radius: 15;">
-            <children>
-                <Label layoutX="21.0" layoutY="30.0" prefHeight="30.0" prefWidth="300.0" text="Cadastro de Hóspede">
-                    <font>
-                        <Font name="Bell MT Bold" size="24.0" />
-                    </font>
-                </Label>
-            <Label layoutX="379.0" layoutY="33.0" text="Faça já o seu cadastro !">
+   <children>
+      <Pane layoutX="165.0" layoutY="43.0" prefHeight="95.0" prefWidth="950.0" style="-fx-background-color: white; -fx-background-radius: 15;">
+         <children>
+            <Label layoutX="21.0" layoutY="30.0" prefHeight="30.0" prefWidth="300.0" text="Cadastro de Hóspede">
                <font>
-                  <Font size="20.0" />
+                  <Font name="Bell MT Bold" size="24.0" />
                </font>
             </Label>
-            </children>
-        </Pane>
+         </children>
+      </Pane>
 
-        <Label layoutX="171.0" layoutY="170.0" prefHeight="30.0" prefWidth="177.0" text="Nome do Hóspede" textFill="WHITE">
-            <font>
-                <Font name="Bell MT Bold" size="20.0" />
-            </font>
-        </Label>
+      <Label layoutX="436.0" layoutY="170.0" prefHeight="30.0" prefWidth="177.0" text="Nome do Hóspede" textFill="WHITE">
+         <font>
+            <Font name="Bell MT Bold" size="20.0" />
+         </font>
+      </Label>
 
-        <TextField fx:id="nomeField" layoutX="171.0" layoutY="210.0" prefHeight="30.0" prefWidth="950.0" style="-fx-background-radius: 5;" />
+      <TextField fx:id="nomeField" layoutX="438.0" layoutY="206.0" prefHeight="30.0" prefWidth="350.0" style="-fx-background-radius: 5;" />
 
-        <Label layoutX="171.0" layoutY="270.0" prefHeight="30.0" prefWidth="250.0" text="Data de Nascimento" textFill="WHITE">
-            <font>
-                <Font name="Bell MT Bold" size="20.0" />
-            </font>
-        </Label>
+      <Label layoutX="436.0" layoutY="252.0" prefHeight="30.0" prefWidth="250.0" text="Data de Nascimento" textFill="WHITE">
+         <font>
+            <Font name="Bell MT Bold" size="20.0" />
+         </font>
+      </Label>
 
-        <DatePicker fx:id="nascimentoPicker" layoutX="171.0" layoutY="310.0" prefHeight="30.0" prefWidth="950.0" style="-fx-background-radius: 5;" />
+      <DatePicker fx:id="nascimentoPicker" layoutX="438.0" layoutY="282.0" prefHeight="30.0" prefWidth="350.0" style="-fx-background-radius: 5;" />
 
-        <Label layoutX="171.0" layoutY="370.0" prefHeight="30.0" prefWidth="177.0" text="CPF" textFill="WHITE">
-            <font>
-                <Font name="Bell MT Bold" size="20.0" />
-            </font>
-        </Label>
+      <Label layoutX="436.0" layoutY="330.0" prefHeight="30.0" prefWidth="177.0" text="CPF" textFill="WHITE">
+         <font>
+            <Font name="Bell MT Bold" size="20.0" />
+         </font>
+      </Label>
 
-        <TextField fx:id="cpfField" layoutX="171.0" layoutY="410.0" prefHeight="30.0" prefWidth="950.0" style="-fx-background-radius: 5;" />
+      <TextField fx:id="cpfField" layoutX="438.0" layoutY="360.0" prefHeight="30.0" prefWidth="350.0" style="-fx-background-radius: 5;" />
 
-        <Label layoutX="171.0" layoutY="470.0" prefHeight="30.0" prefWidth="177.0" text="CNPJ" textFill="WHITE">
-            <font>
-                <Font name="Bell MT Bold" size="20.0" />
-            </font>
-        </Label>
+      <Label layoutX="436.0" layoutY="400.0" prefHeight="30.0" prefWidth="177.0" text="CNPJ" textFill="WHITE">
+         <font>
+            <Font name="Bell MT Bold" size="20.0" />
+         </font>
+      </Label>
 
-        <TextField fx:id="cnpjField" layoutX="171.0" layoutY="510.0" prefHeight="30.0" prefWidth="950.0" style="-fx-background-radius: 5;" />
+      <TextField fx:id="cnpjField" layoutX="438.0" layoutY="430.0" prefHeight="30.0" prefWidth="350.0" style="-fx-background-radius: 5;" />
 
-        <Button fx:id="cadastrarButton" layoutX="568.0" layoutY="580.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="114.0" style="-fx-background-radius: 8;" text="Cadastrar" />
-
-    </children>
+      <!-- Botão estilizado -->
+      <Button fx:id="cadastrarButton" layoutX="488.0" layoutY="644.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="200.0" styleClass="fancy-button" text="Cadastrar" />
+      <Label layoutX="438.0" layoutY="469.0" text="Email" textFill="WHITE">
+         <font>
+            <Font name="Bell MT" size="20.0" />
+         </font>
+      </Label>
+      <TextField layoutX="438.0" layoutY="506.0" prefHeight="30.0" prefWidth="350.0" />
+      <Label layoutX="438.0" layoutY="550.0" text="Senha" textFill="WHITE">
+         <font>
+            <Font name="Bell MT" size="20.0" />
+         </font>
+      </Label>
+      <TextField layoutX="438.0" layoutY="579.0" prefHeight="30.0" prefWidth="350.0" />
+      <Label layoutX="596.0" layoutY="554.0" text="O limite da senha é de 40 caracteres" textFill="WHITE" />
+   </children>
 </AnchorPane>
