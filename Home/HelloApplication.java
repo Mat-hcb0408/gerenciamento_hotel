@@ -1,4 +1,4 @@
- package org.example.homehotel;
+package org.example.homehotel;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

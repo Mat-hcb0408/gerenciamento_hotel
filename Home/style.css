@@ -1,102 +1,61 @@
-/* ===== Estilo da âncora principal ===== */
+/* ===== Estilo Base ===== */
 .anchor-pane {
     -fx-background-color: linear-gradient(to bottom, #10192b, #1a2940);
-    -fx-padding: 0;
 }
 
-/* ===== Imagem de fundo ===== */
+/* ===== Imagem de Fundo ===== */
 #Praia_Imagem {
     -fx-opacity: 0.6;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.2, 0, 4);
-    -fx-background-radius: 15;
 }
 
-/* ===== Barra superior ===== */
+/* ===== Barra Superior ===== */
 .top-bar {
     -fx-background-color: white;
     -fx-background-radius: 20;
-    -fx-padding: 10 30 10 30;
+    -fx-padding: 10 30;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0.2, 0, 2);
-    -fx-border-radius: 20;
-    -fx-alignment: center;
 }
 
-/* ===== Logo ===== */
-.logo-title {
-    -fx-font-size: 38px;
-    -fx-text-fill: #2c3e50;
-    -fx-font-family: "Bell MT";
-    -fx-font-weight: bold;
-}
-
-.logo-subtitle {
-    -fx-font-size: 22px;
-    -fx-text-fill: #34495e;
-    -fx-font-family: "Bell MT";
-}
-
-/* ===== Navegação principal (itens da barra) ===== */
-.label-quartos,
-.label-reservas,
-.label-hospedes,
-.label-pagamentos {
+/* ===== Itens do Menu Centralizados ===== */
+.label-menu {
     -fx-text-fill: #5a5a5a;
-    -fx-font-size: 20px;
+    -fx-font-size: 16px;
     -fx-font-family: "Bell MT";
     -fx-font-weight: bold;
     -fx-cursor: hand;
-    -fx-padding: 0 15 0 15;
-    -fx-opacity: 0.88;
-    -fx-transition: all 0.3s ease-in-out;
+    -fx-padding: 0 15;
+    -fx-alignment: center;
+    -fx-content-display: center;
+    -fx-text-alignment: center;
 }
 
-.label-quartos:hover,
-.label-reservas:hover,
-.label-hospedes:hover,
-.label-pagamentos:hover {
-    -fx-text-fill: #003366; /* Azul escuro profissional */
-    -fx-font-size: 21px;
+.label-menu:hover {
+    -fx-text-fill: #003366;
+    -fx-font-size: 17px;
 }
 
-/* ===== Slogan principal ===== */
-.hotel-slogan {
-    -fx-font-size: 110px;
+/* ===== Títulos Centralizados ===== */
+.titulo-principal {
     -fx-font-family: "Bodoni MT Poster Compressed";
+    -fx-font-size: 65px;
     -fx-text-fill: white;
-    -fx-opacity: 0.95;
-    -fx-letter-spacing: 1px;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-content-display: center;
+    -fx-wrap-text: true;
 }
 
-/* ===== Letra 'A' estilizada ===== */
-.hotel-title-letter {
-    -fx-font-size: 120px;
-    -fx-font-family: "Bodoni MT Poster Compressed";
+.slogan {
+    -fx-font-family: "Agency FB";
+    -fx-font-size: 20px;
     -fx-text-fill: white;
-    -fx-opacity: 1;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-content-display: center;
 }
 
-/* ===== Botões (caso tenha no futuro) ===== */
-.button {
-    -fx-background-color: #003366;
-    -fx-text-fill: white;
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 16px;
-    -fx-background-radius: 10;
-    -fx-cursor: hand;
-    -fx-padding: 10 20 10 20;
-    -fx-transition: all 0.3s ease-in-out;
-}
-
-.button:hover {
-    -fx-background-color: #002244;
-}
-.hotel-slogan {
-    -fx-font-family: "Georgia";
-    -fx-font-size: 60px;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-}
-
+/* ===== Botões Centralizados ===== */
 .availability-button {
     -fx-background-color: #1e3a5f;
     -fx-text-fill: white;
@@ -105,8 +64,31 @@
     -fx-background-radius: 10;
     -fx-font-weight: bold;
     -fx-cursor: hand;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 50px;
+    -fx-alignment: center;
+    -fx-content-display: center;
 }
 
 .availability-button:hover {
     -fx-background-color: #30557c;
+}
+
+.transparent-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 50px;
+    -fx-alignment: center;
+    -fx-content-display: center;
+}
+
+.transparent-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-border-color: #f0f0f0;
 }
