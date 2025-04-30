@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #10192b;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #10192b;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ativ12.tela_de_quartos.HelloController">
    <children>
       <!-- Título -->
       <Pane layoutX="293.0" layoutY="-19.0" prefHeight="67.0" prefWidth="695.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15;">
@@ -14,26 +15,27 @@
                   <Font name="Bell MT" size="30.0" />
                </font>
             </Label>
+            <ImageView fx:id="Fundo_imagem" fitHeight="720.0" fitWidth="1280.0" layoutX="-289.0" layoutY="16.0" pickOnBounds="true" preserveRatio="false" />
          </children>
       </Pane>
 
       <!-- Campo de pesquisa -->
-      <TextField layoutX="19.0" layoutY="76.0" prefHeight="35.0" prefWidth="260.0" style="-fx-background-radius: 10;" text="🔍 Pesquisa" />
+      <TextField fx:id="txtPesquisar" layoutX="19.0" layoutY="76.0" prefHeight="35.0" prefWidth="260.0" promptText="🔍 Pesquisa" style="-fx-background-radius: 10;" />
 
       <!-- Botões -->
-      <Button layoutX="293.0" layoutY="76.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="93.0" style="-fx-background-color: #f6ac0f; -fx-background-radius: 15;" text="Cadastrar" textFill="WHITE">
+      <Button layoutX="289.0" layoutY="75.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="93.0" style="-fx-background-color: #f6ac0f; -fx-background-radius: 15;" text="Cadastrar" textFill="WHITE">
          <font>
             <Font name="Bell MT Bold" size="16.0" />
          </font>
       </Button>
 
-      <Button layoutX="397.0" layoutY="76.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="93.0" style="-fx-background-color: #f6ac0f; -fx-background-radius: 15;" text="Editar" textFill="WHITE">
+      <Button layoutX="392.0" layoutY="76.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="93.0" style="-fx-background-color: #f6ac0f; -fx-background-radius: 15;" text="Editar" textFill="WHITE">
          <font>
             <Font name="Bell MT Bold" size="16.0" />
          </font>
       </Button>
 
-      <Button layoutX="501.0" layoutY="76.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="93.0" style="-fx-background-color: #f6ac0f; -fx-background-radius: 15;" text="Excluir" textFill="WHITE">
+      <Button layoutX="495.0" layoutY="76.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="93.0" style="-fx-background-color: #f6ac0f; -fx-background-radius: 15;" text="Excluir" textFill="WHITE">
          <font>
             <Font name="Bell MT Bold" size="16.0" />
          </font>
@@ -43,12 +45,13 @@
       <TableView layoutX="13.0" layoutY="142.0" prefHeight="571.0" prefWidth="1260.0">
          <columns>
                   <TableColumn prefWidth="90.0" text="ID" />
-                  <TableColumn prefWidth="245.0" text="Nome" />
-                  <TableColumn prefWidth="180.0" text="Cama de Casal" />
-                  <TableColumn prefWidth="180.0" text="Cama de solteiro" />
+                  <TableColumn prefWidth="225.0" text="Nome" />
+                  <TableColumn prefWidth="120.0" text="Cama de Casal" />
+                  <TableColumn prefWidth="120.0" text="Cama de solteiro" />
                   <TableColumn prefWidth="195.0" text="Max Pessoas" />
                   <TableColumn prefWidth="105.0" text="Status Quarto" />
-                  <TableColumn prefWidth="255.0" text="Botoes" />
+                  <TableColumn prefWidth="202.0" text="Valor" />
+            <TableColumn prefWidth="202.0" text="Botoes" />
          </columns>
       </TableView>
    </children>
