@@ -1,44 +1,54 @@
 package org.example.homehotel;
 
+import javafx.animation.ScaleTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.application.Platform;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class HelloController {
+
     @FXML
     private Label welcomeText;
+
     @FXML
     private ImageView Praia_Imagem;
+
     @FXML
     private ImageView Logo_Imagem;
+
     @FXML
-    private AnchorPane rootPane; // Adicione esta referência
+    private AnchorPane rootPane;
+
+    @FXML
+    private Button reservarButton;
+
+    @FXML
+    private Button disponibilidadeButton;
 
     @FXML
     public void initialize() {
-        // Configura o redimensionamento automático
         configurarTelaCheia();
         carregarImagemFundo();
         carregarImagemLogo();
+        applyHoverEffect(reservarButton);
+        applyHoverEffect(disponibilidadeButton);
     }
 
-
     private void configurarTelaCheia() {
-        // Vincula o tamanho do AnchorPane ao tamanho da janela
         rootPane.sceneProperty().addListener((obs, oldScene, newScene) -> {
             if (newScene != null) {
                 newScene.windowProperty().addListener((obs2, oldWindow, newWindow) -> {
                     if (newWindow != null) {
                         Stage stage = (Stage) newWindow;
-                        // Faz o AnchorPane acompanhar o tamanho da janela
                         rootPane.prefWidthProperty().bind(stage.widthProperty());
                         rootPane.prefHeightProperty().bind(stage.heightProperty());
 
-                        // Configura a imagem de fundo para preencher todo o espaço
                         Praia_Imagem.fitWidthProperty().bind(stage.widthProperty());
                         Praia_Imagem.fitHeightProperty().bind(stage.heightProperty());
                     }
@@ -47,7 +57,6 @@ public class HelloController {
         });
     }
 
-    @FXML
     public void carregarImagemFundo() {
         new Thread(() -> {
             try {
@@ -55,7 +64,7 @@ public class HelloController {
                 Image imagem = new Image(url, true);
                 Platform.runLater(() -> {
                     Praia_Imagem.setImage(imagem);
-                    Praia_Imagem.setPreserveRatio(false); // Para preencher todo o espaço
+                    Praia_Imagem.setPreserveRatio(false);
                 });
             } catch (Exception e) {
                 System.out.println("Erro ao carregar a imagem do fundo: " + e.getMessage());
@@ -63,16 +72,28 @@ public class HelloController {
         }).start();
     }
 
-    @FXML
     public void carregarImagemLogo() {
         new Thread(() -> {
             try {
-                String url = "https://raw.githubusercontent.com/Mat-hcb0408/gerenciamento_hotel/refs/heads/main/SkyWalker%20Hot%C3%A9is.png";
+                String url = "https://raw.githubusercontent.com/Mat-hcb0408/gerenciamento_hotel/refs/heads/main/SkyWalker%20Hot%C3%A9is_claro.png";
                 Image imagem = new Image(url, true);
                 Platform.runLater(() -> Logo_Imagem.setImage(imagem));
             } catch (Exception e) {
                 System.out.println("Erro ao carregar a imagem do logo: " + e.getMessage());
             }
         }).start();
+    }
+
+    private void applyHoverEffect(Button button) {
+        ScaleTransition scaleUp = new ScaleTransition(Duration.millis(200), button);
+        scaleUp.setToX(1.1);
+        scaleUp.setToY(1.1);
+
+        ScaleTransition scaleDown = new ScaleTransition(Duration.millis(200), button);
+        scaleDown.setToX(1.0);
+        scaleDown.setToY(1.0);
+
+        button.setOnMouseEntered(e -> scaleUp.playFromStart());
+        button.setOnMouseExited(e -> scaleDown.playFromStart());
     }
 }
