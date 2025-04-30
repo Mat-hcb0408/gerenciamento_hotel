@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="anchor-pane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.homehotel.HelloController">
+
+  <!-- Imagem de fundo -->
+  <ImageView fx:id="Praia_Imagem" pickOnBounds="true" preserveRatio="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+
+  <!-- Barra superior branca com textos centralizados -->
+  <StackPane fx:id="topBar" prefHeight="80.0" style="-fx-background-color: rgba(255,255,255,0.5); -fx-background-radius: 10;" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="30.0">
+    <HBox alignment="CENTER" layoutX="299.0" layoutY="30.0" spacing="40.0" AnchorPane.bottomAnchor="673.0" AnchorPane.leftAnchor="298.0" AnchorPane.rightAnchor="298.0">
+      <children>
+        <Label alignment="CENTER" styleClass="label-menu" text="Gerenciar reservas" />
+        <Label alignment="CENTER" styleClass="label-menu" text="Quartos" />
+        <Label alignment="CENTER" styleClass="label-menu" text="Hóspedes" />
+        <Label alignment="CENTER" styleClass="label-menu" text="Pagamentos" />
+      </children>
+    </HBox>
+  </StackPane>
+
+
+
+  <!-- Logo -->
+  <ImageView fx:id="Logo_Imagem" fitHeight="120.0" fitWidth="180.0" layoutX="60.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="19.0" />
+
+  <!-- Título principal centralizado -->
+  <Label alignment="CENTER" layoutY="288.0" styleClass="titulo-principal" text="Bem-vindo ao Skywalker Hotel" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="288.0">
+    <font>
+      <Font name="Bodoni MT Poster Compressed" size="65.0" />
+    </font>
+  </Label>
+
+  <!-- Slogan centralizado -->
+  <Label alignment="CENTER" layoutY="451.0" styleClass="slogan" text="Sua estadia perfeita" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="451.0">
+    <font>
+      <Font name="Agency FB" size="20.0" />
+    </font>
+  </Label>
+
+  <!-- Botões centralizados -->
+  <HBox alignment="CENTER" layoutY="559.0" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="559.0">
+    <children>
+      <Button prefHeight="50.0" prefWidth="200.0" styleClass="availability-button" text="Reservar agora" />
+      <Button prefHeight="50.0" prefWidth="200.0" styleClass="transparent-button" text="Ver disponibilidade" />
+    </children>
+  </HBox>
+
+</AnchorPane>
