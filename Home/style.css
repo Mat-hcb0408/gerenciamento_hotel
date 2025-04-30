@@ -7,17 +7,18 @@
 #Praia_Imagem {
     -fx-opacity: 0.6;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.2, 0, 4);
+    -fx-preserve-ratio: false;
 }
 
+/* ===== Barra Superior Translúcida ===== */
 .top-bar {
-    -fx-background-color: rgba(255, 255, 255, 0.5); /* fundo translúcido */
+    -fx-background-color: rgba(255, 255, 255, 0.5);
     -fx-background-radius: 10;
     -fx-padding: 10 30;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0.2, 0, 2);
 }
 
-
-/* ===== Itens do Menu Centralizados ===== */
+/* ===== Rótulos do Menu Central ===== */
 .label-menu {
     -fx-text-fill: #5a5a5a;
     -fx-font-size: 25px;
@@ -32,10 +33,9 @@
 
 .label-menu:hover {
     -fx-text-fill: #003366;
-    -fx-font-size: 25px;
 }
 
-/* ===== Títulos Centralizados ===== */
+/* ===== Títulos Principais ===== */
 .titulo-principal {
     -fx-font-family: "Bodoni MT Poster Compressed";
     -fx-font-size: 135px;
@@ -55,7 +55,7 @@
     -fx-content-display: center;
 }
 
-/* ===== Botões Centralizados ===== */
+/* ===== Botões Comuns ===== */
 .availability-button {
     -fx-background-color: #1e3a5f;
     -fx-text-fill: white;
@@ -67,13 +67,13 @@
     -fx-pref-width: 200px;
     -fx-pref-height: 50px;
     -fx-alignment: center;
-    -fx-content-display: center;
 }
 
 .availability-button:hover {
     -fx-background-color: #30557c;
 }
 
+/* ===== Botão Transparente com Borda ===== */
 .transparent-button {
     -fx-background-color: transparent;
     -fx-text-fill: white;
@@ -85,10 +85,67 @@
     -fx-pref-width: 200px;
     -fx-pref-height: 50px;
     -fx-alignment: center;
-    -fx-content-display: center;
 }
 
 .transparent-button:hover {
     -fx-background-color: rgba(255, 255, 255, 0.1);
     -fx-border-color: #f0f0f0;
+}
+
+/* ===== Botão Estilizado com Sombra ===== */
+.fancy-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #836FFF;
+    -fx-border-color: #836FFF;
+    -fx-border-width: 2px;
+    -fx-border-radius: 30;
+    -fx-background-radius: 30;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 50px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(86, 11, 173, 0.4), 10, 0.2, 0, 0);
+}
+
+.fancy-button:hover {
+    -fx-background-color: #836FFF;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(86, 11, 173, 0.8), 12, 0.4, 0, 2);
+}
+
+.fancy-button:pressed {
+    -fx-background-color: #3a0ca3;
+}
+
+/* ===== Caixa Decorativa ===== */
+.box {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-padding: 15px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 2, 0.1, 0, 1);
+}
+
+.box:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 5, 0.2, 0, 4);
+    -fx-text-fill: #262626;
+}
+
+/* ===== Botão em Formato de Caixa ===== */
+.box-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-padding: 15px 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 3, 0.1, 0, 1);
+    -fx-text-alignment: center;
+    -fx-alignment: center;
 }
