@@ -2,75 +2,63 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" styleClass="anchor-pane" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.projeto_hotel.HelloController">
-   <children>
+<AnchorPane styleClass="anchor-pane" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
 
-      <!-- Cabeçalho -->
-      <Pane layoutX="165.0" layoutY="43.0" prefHeight="94.0" prefWidth="944.0" styleClass="top-bar">
-         <children>
-            <Label layoutX="21.0" layoutY="30.0" prefHeight="30.0" prefWidth="300.0" styleClass="titulo-cadastro" text="Cadastro de Hóspede" textFill="WHITE">
-               <font>
-                  <Font name="Bell MT Bold" size="24.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
+    <VBox spacing="0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
-      <!-- Telinha azul escuro contendo os campos -->
-      <Pane layoutX="447.0" layoutY="175.0" prefHeight="482.0" prefWidth="400.0" style="-fx-background-color: #0d1a2b; -fx-background-radius: 15;">
-         <children>
+        <!-- Cabeçalho -->
+        <Pane prefHeight="94.0" prefWidth="1280.0" styleClass="top-bar">
+            <children>
+                <Label layoutX="21.0" layoutY="30.0" styleClass="heading-main" text="Cadastro de Hóspede" />
+            </children>
+        </Pane>
 
-            <Label layoutX="20.0" layoutY="10.0" styleClass="label-form" text="Nome do Hóspede" textFill="WHITE">
-               <font>
-                  <Font name="Bell MT" size="20.0" />
-               </font>
-            </Label>
-            <TextField fx:id="nomeField" layoutX="20.0" layoutY="40.0" prefHeight="30.0" prefWidth="350.0" style="-fx-background-radius: 5;" />
+        <!-- Conteúdo Central -->
+        <StackPane alignment="CENTER" VBox.vgrow="ALWAYS">
+            <VBox alignment="CENTER" prefHeight="518.0" prefWidth="400.0" spacing="20" styleClass="form-card">
 
-            <Label layoutX="20.0" layoutY="80.0" styleClass="label-form" text="Data de Nascimento" textFill="WHITE">
-               <font>
-                  <Font name="Bell MT" size="20.0" />
-               </font>
-            </Label>
-            <DatePicker fx:id="nascimentoPicker" layoutX="20.0" layoutY="110.0" prefHeight="49.0" prefWidth="350.0" />
+                <!-- Nome -->
+                <VBox alignment="CENTER_LEFT" spacing="5">
+                    <Label styleClass="form-label" text="Nome do Hóspede" />
+                    <TextField fx:id="nomeField" promptText="Digite o nome completo" styleClass="input-field" />
+                </VBox>
 
-            <Label layoutX="25.0" layoutY="159.0" prefHeight="6.0" prefWidth="34.0" styleClass="label-form" text="CPF" textFill="WHITE">
-               <font>
-                  <Font name="Bell MT Bold" size="20.0" />
-               </font>
-            </Label>
-            <TextField fx:id="cpfField" layoutX="20.0" layoutY="180.0" prefHeight="30.0" prefWidth="320.0" />
+                <!-- Data de nascimento -->
+                <VBox alignment="CENTER_LEFT" spacing="5">
+                    <Label styleClass="form-label" text="Data de Nascimento" />
+                    <DatePicker fx:id="nascimentoPicker" styleClass="input-field" />
+                </VBox>
 
-            <ComboBox layoutX="320.0" layoutY="180.0" prefHeight="37.0" prefWidth="50.0" />
+                <!-- CPF -->
+                <VBox alignment="CENTER_LEFT" spacing="5">
+                    <Label styleClass="form-label" text="CPF" />
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <TextField fx:id="cpfField" promptText="000.000.000-00" styleClass="input-field" HBox.hgrow="ALWAYS" />
+                        <ComboBox fx:id="tipoDocumento" promptText="Tipo" styleClass="input-field" />
+                    </HBox>
+                </VBox>
 
-            <Label layoutX="20.0" layoutY="220.0" prefHeight="22.0" prefWidth="50.0" styleClass="label-form" text="Email" textFill="WHITE">
-               <font>
-                  <Font name="Bell MT" size="20.0" />
-               </font>
-            </Label>
-            <TextField layoutX="20.0" layoutY="250.0" prefHeight="30.0" prefWidth="350.0" />
+                <!-- Email -->
+                <VBox alignment="CENTER_LEFT" spacing="5">
+                    <Label styleClass="form-label" text="Email" />
+                    <TextField fx:id="emailField" promptText="exemplo@email.com" styleClass="input-field" />
+                </VBox>
 
-            <Label layoutX="23.0" layoutY="301.0" styleClass="label-form" text="Senha" textFill="WHITE">
-               <font>
-                  <Font name="Bell MT" size="20.0" />
-               </font>
-            </Label>
-            <TextField layoutX="20.0" layoutY="320.0" prefHeight="30.0" prefWidth="350.0" />
+                <!-- Senha -->
+                <VBox alignment="CENTER_LEFT" spacing="5">
+                    <Label styleClass="form-label" text="Senha" />
+                    <PasswordField fx:id="senhaField" promptText="********" styleClass="input-field" />
+                    <Label styleClass="link-text" text="Mínimo de 8 caracteres" />
+                </VBox>
 
-            <Label layoutX="221.0" layoutY="303.0" prefHeight="18.0" prefWidth="149.0" text="Mínimo de 8 caracteres" textFill="WHITE">
-               <font>
-                  <Font name="Bell MT" size="15.0" />
-               </font>
-            </Label>
+                <!-- Botões -->
+                <HBox alignment="CENTER" spacing="30">
+                    <Button fx:id="cadastrarButton" styleClass="custom-button" text="Cadastrar" />
+                    <Button fx:id="cancelarButton" styleClass="custom-button" text="Cancelar" />
+                </HBox>
 
-            <!-- Botão Cadastrar -->
-            <Button fx:id="cadastrarButton" layoutX="35.0" layoutY="392.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="200.0" styleClass="availability-button" text="Cadastrar" />
-            <Button fx:id="cadastrarButton1" layoutX="200.0" layoutY="392.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="200.0" styleClass="availability-button" text="Cancelar" />
-
-         </children>
-      </Pane>
-
-   </children>
+            </VBox>
+        </StackPane>
+    </VBox>
 </AnchorPane>
