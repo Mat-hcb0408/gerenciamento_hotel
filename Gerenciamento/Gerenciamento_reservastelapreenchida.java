@@ -2,43 +2,37 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0"
-            xmlns="http://javafx.com/javafx/17.0.12"
-            xmlns:fx="http://javafx.com/fxml/1"
-            stylesheets="@Style.css"
-            styleClass="anchor-pane">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" styleClass="anchor-pane" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
 
-    <VBox spacing="20.0" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.bottomAnchor="20.0">
+   <VBox spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
 
-        <!-- Título -->
-        <Pane prefHeight="67.0" styleClass="top-bar">
-            <Label alignment="CENTER" prefHeight="35.0" prefWidth="1280.0"
-                   text="Gerenciamento de Reservas" styleClass="heading-main" />
-        </Pane>
+      <!-- Barra superior -->
+      <Pane prefHeight="67.0" styleClass="top-bar">
+         <Label alignment="CENTER" layoutX="102.0" layoutY="16.0" prefHeight="35.0" prefWidth="1280.0" styleClass="heading-main" text="Gerenciamento de Reservas" />
+      </Pane>
 
-        <!-- Área de busca e botões -->
-        <HBox spacing="10.0">
-            <TextField promptText="🔍 Pesquisa" styleClass="input-field" prefHeight="35.0" HBox.hgrow="ALWAYS" />
-            <Button text="Cadastrar" styleClass="custom-button" prefHeight="35.0" />
-            <Button text="Editar" styleClass="custom-button" prefHeight="35.0" />
-            <Button text="Excluir" styleClass="custom-button" prefHeight="35.0" />
-        </HBox>
+      <!-- Área de busca e botões -->
+      <HBox spacing="10.0">
+         <TextField prefHeight="35.0" promptText="🔍 Pesquisa" styleClass="input-field" HBox.hgrow="ALWAYS" />
+         <Button prefHeight="35.0" styleClass="custom-button" text="Cadastrar" />
+         <Button prefHeight="35.0" styleClass="custom-button" text="Editar" />
+         <Button prefHeight="35.0" styleClass="custom-button" text="Excluir" />
+      </HBox>
 
-        <!-- Tabela -->
-        <TableView VBox.vgrow="ALWAYS">
-            <columns>
-                <TableColumn text="ID" prefWidth="76.0" />
-                <TableColumn text="ID Hóspede" prefWidth="100.0" />
-                <TableColumn text="ID Quarto" prefWidth="90.0" />
-                <TableColumn text="ID Pagamento" prefWidth="106.0" />
-                <TableColumn text="Data check-in" prefWidth="195.0" />
-                <TableColumn text="Data check-out" prefWidth="224.0" />
-            </columns>
-            <columnResizePolicy>
-                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-            </columnResizePolicy>
-        </TableView>
-    </VBox>
+      <!-- Tabela de Reservas -->
+      <TableView fx:id="tabelaReservas" VBox.vgrow="ALWAYS">
+         <columns>
+            <TableColumn fx:id="colunaId" prefWidth="76.0" text="ID" />
+            <TableColumn fx:id="colunaHospede" prefWidth="100.0" text="ID Hóspede" />
+            <TableColumn fx:id="colunaQuarto" prefWidth="90.0" text="ID Quarto" />
+            <TableColumn fx:id="colunaPagamento" prefWidth="106.0" text="ID Pagamento" />
+            <TableColumn fx:id="colunaCheckin" prefWidth="195.0" text="Data check-in" />
+            <TableColumn fx:id="colunaCheckout" prefWidth="224.0" text="Data check-out" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </VBox>
 </AnchorPane>
