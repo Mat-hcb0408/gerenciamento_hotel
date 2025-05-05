@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane styleClass="anchor-pane" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane styleClass="anchor-pane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
 
     <VBox spacing="0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
@@ -16,7 +16,7 @@
 
         <!-- Conteúdo Central -->
         <StackPane alignment="CENTER" VBox.vgrow="ALWAYS">
-            <VBox alignment="CENTER" prefHeight="518.0" prefWidth="400.0" spacing="20" styleClass="form-card">
+            <VBox alignment="CENTER" prefHeight="634.0" prefWidth="1223.0" spacing="20" styleClass="form-card">
 
                 <!-- Nome -->
                 <VBox alignment="CENTER_LEFT" spacing="5">
@@ -27,7 +27,7 @@
                 <!-- Data de nascimento -->
                 <VBox alignment="CENTER_LEFT" spacing="5">
                     <Label styleClass="form-label" text="Data de Nascimento" />
-                    <DatePicker fx:id="nascimentoPicker" styleClass="input-field" />
+                    <DatePicker fx:id="nascimentoPicker" prefHeight="25.0" prefWidth="1307.0" styleClass="input-field" />
                 </VBox>
 
                 <!-- CPF -->
@@ -45,7 +45,7 @@
                     <TextField fx:id="emailField" promptText="exemplo@email.com" styleClass="input-field" />
                 </VBox>
 
-                <!-- Senha -->
+                <!-- Senna -->
                 <VBox alignment="CENTER_LEFT" spacing="5">
                     <Label styleClass="form-label" text="Senha" />
                     <PasswordField fx:id="senhaField" promptText="********" styleClass="input-field" />
