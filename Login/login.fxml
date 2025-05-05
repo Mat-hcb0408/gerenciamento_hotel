@@ -1,76 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            styleClass="anchor-pane" stylesheets="@Style.css">
+<AnchorPane styleClass="anchor-pane" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
 
-    <!-- Container principal que ocupa toda a tela -->
-    <VBox alignment="TOP_CENTER" spacing="30" AnchorPane.topAnchor="0"
-          AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-        <padding>
-            <Insets top="20" right="20" bottom="20" left="20"/>
-        </padding>
+   <VBox alignment="TOP_CENTER" spacing="30" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
 
-        <!-- Cabeçalho -->
-        <HBox alignment="CENTER" spacing="20" styleClass="top-bar" maxWidth="800">
+      <!-- Padding da tela -->
+      <padding>
+         <Insets bottom="20" left="20" right="20" top="20" />
+      </padding>
+
+      <!-- Cabeçalho -->
+      <HBox alignment="TOP_LEFT" maxWidth="800" prefHeight="75" spacing="20" styleClass="top-bar">
+         <padding>
+            <Insets bottom="20" left="20" right="20" top="20" />
+         </padding>
+         <Label styleClass="heading-main" text="LOGIN" />
+      </HBox>
+
+      <!-- Mensagem central -->
+      <Label styleClass="welcome-message" text="Bem-vindo! Realize aqui seu login" />
+
+      <!-- Painel do formulário -->
+      <StackPane>
+         <VBox alignment="CENTER" prefHeight="581" prefWidth="325" spacing="20" styleClass="form-card">
             <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
+               <Insets bottom="40" left="40" right="40" top="40" />
             </padding>
-            <Label text="LOGIN" styleClass="heading-main">
-                <font>
-                    <Font name="Bell MT Bold" size="24"/>
-                </font>
-            </Label>
-            <Label text="Bem-vindo! Realize aqui seu login" styleClass="heading-sub">
-                <font>
-                    <Font size="24"/>
-                </font>
-            </Label>
-        </HBox>
 
-        <!-- Formulário central -->
-        <StackPane styleClass="form-container">
-            <VBox alignment="CENTER" spacing="20" styleClass="form-box">
-                <padding>
-                    <Insets top="40" right="40" bottom="40" left="40"/>
-                </padding>
-
-                <!-- Campo Email -->
-                <VBox alignment="CENTER_LEFT" spacing="5">
-                    <Label text="Email" styleClass="form-label"/>
-                    <TextField promptText="Digite seu email" styleClass="form-input"/>
-                </VBox>
-
-                <!-- Campo Senha -->
-                <VBox alignment="CENTER_LEFT" spacing="5">
-                    <Label text="Senha" styleClass="form-label"/>
-                    <PasswordField promptText="Digite sua senha" styleClass="form-input"/>
-                </VBox>
-
-                <!-- Botão Entrar -->
-                <Button text="Entrar" styleClass="primary-button"/>
-
-                <!-- Link de cadastro -->
-                <Label text="Não possui uma conta? Cadastre-se agora!"
-                       styleClass="link-text"/>
-
-                <!-- Divisor -->
-                <Separator styleClass="divider"/>
-
-                <!-- Redes sociais -->
-                <VBox alignment="CENTER" spacing="10">
-                    <Label text="Entrar com" styleClass="social-label"/>
-                    <HBox alignment="CENTER" spacing="15">
-                        <Button text="FB" styleClass="social-button"/>
-                        <Button text="GO" styleClass="social-button"/>
-                        <Button text="F" styleClass="social-button"/>
-                    </HBox>
-                </VBox>
+            <!-- Email -->
+            <VBox alignment="CENTER_LEFT" spacing="5">
+               <Label styleClass="form-label" text="Email" />
+               <TextField promptText="Digite seu email" styleClass="input-field" />
             </VBox>
-        </StackPane>
-    </VBox>
+
+            <!-- Senha -->
+            <VBox alignment="CENTER_LEFT" spacing="5">
+               <Label styleClass="form-label" text="Senha" />
+               <PasswordField promptText="Digite sua senha" styleClass="input-field" />
+            </VBox>
+
+            <!-- Botão Entrar -->
+            <Button styleClass="custom-button" text="Entrar" />
+
+            <!-- Texto de ajuda -->
+            <Label styleClass="link-text" text="Não possui uma conta?Cadastre-se agora!" />
+
+            <!-- Botão Cadastre-se -->
+            <Button styleClass="custom-button" text="Cadastre-se" />
+
+         </VBox>
+      </StackPane>
+   </VBox>
 </AnchorPane>
