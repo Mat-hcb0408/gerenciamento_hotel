@@ -3,56 +3,60 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane styleClass="anchor-pane" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
 
-   <VBox alignment="TOP_CENTER" spacing="30" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+    <VBox alignment="TOP_CENTER" spacing="30" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
 
-      <!-- Padding da tela -->
-      <padding>
-         <Insets bottom="20" left="20" right="20" top="20" />
-      </padding>
-
-      <!-- Cabeçalho -->
-      <HBox alignment="TOP_LEFT" maxWidth="800" prefHeight="75" spacing="20" styleClass="top-bar">
-         <padding>
+        <!-- Padding da tela -->
+        <padding>
             <Insets bottom="20" left="20" right="20" top="20" />
-         </padding>
-         <Label styleClass="heading-main" text="LOGIN" />
-      </HBox>
+        </padding>
 
-      <!-- Mensagem central -->
-      <Label styleClass="welcome-message" text="Bem-vindo! Realize aqui seu login" />
-
-      <!-- Painel do formulário -->
-      <StackPane>
-         <VBox alignment="CENTER" prefHeight="581" prefWidth="325" spacing="20" styleClass="form-card">
+        <!-- Cabeçalho -->
+        <HBox alignment="TOP_LEFT" maxWidth="800" prefHeight="75" spacing="20" styleClass="top-bar">
             <padding>
-               <Insets bottom="40" left="40" right="40" top="40" />
+                <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
+            <Label styleClass="heading-main" text="LOGIN" />
+        </HBox>
 
-            <!-- Email -->
-            <VBox alignment="CENTER_LEFT" spacing="5">
-               <Label styleClass="form-label" text="Email" />
-               <TextField promptText="Digite seu email" styleClass="input-field" />
+        <!-- Mensagem central -->
+        <Label styleClass="welcome-message" text="Bem-vindo! Realize aqui seu login" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font></Label>
+
+        <!-- Painel do formulário -->
+        <StackPane>
+            <VBox alignment="CENTER" prefHeight="581" prefWidth="325" spacing="20" styleClass="form-card">
+                <padding>
+                    <Insets bottom="40" left="40" right="40" top="40" />
+                </padding>
+
+                <!-- Email -->
+                <VBox alignment="CENTER_LEFT" spacing="5">
+                    <Label styleClass="form-label" text="Email" />
+                    <TextField promptText="Digite seu email" styleClass="input-field" />
+                </VBox>
+
+                <!-- Senha -->
+                <VBox alignment="CENTER_LEFT" spacing="5">
+                    <Label styleClass="form-label" text="Senha" />
+                    <PasswordField promptText="Digite sua senha" styleClass="input-field" />
+                </VBox>
+
+                <!-- Botão Entrar -->
+                <Button styleClass="custom-button" text="Entrar" />
+
+                <!-- Texto de ajuda -->
+                <Label styleClass="link-text" text="Não possui uma conta?Cadastre-se agora!" />
+
+                <!-- Botão Cadastre-se -->
+                <Button styleClass="custom-button" text="Cadastre-se" />
+
             </VBox>
-
-            <!-- Senha -->
-            <VBox alignment="CENTER_LEFT" spacing="5">
-               <Label styleClass="form-label" text="Senha" />
-               <PasswordField promptText="Digite sua senha" styleClass="input-field" />
-            </VBox>
-
-            <!-- Botão Entrar -->
-            <Button styleClass="custom-button" text="Entrar" />
-
-            <!-- Texto de ajuda -->
-            <Label styleClass="link-text" text="Não possui uma conta?Cadastre-se agora!" />
-
-            <!-- Botão Cadastre-se -->
-            <Button styleClass="custom-button" text="Cadastre-se" />
-
-         </VBox>
-      </StackPane>
-   </VBox>
+        </StackPane>
+    </VBox>
 </AnchorPane>
