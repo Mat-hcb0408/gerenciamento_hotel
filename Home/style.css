@@ -18,21 +18,37 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0.2, 0, 2);
 }
 
-/* ===== Rótulos do Menu Central ===== */
+/* ===== Rótulos do Menu Central - Roxo com Animação ===== */
 .label-menu {
-    -fx-text-fill: #5a5a5a;
-    -fx-font-size: 25px;
-    -fx-font-family: "Bell MT";
+    -fx-background-color: transparent;
+    -fx-text-fill: #836FFF;
+    -fx-font-size: 22px;
+    -fx-font-family: "Segoe UI Semibold";
     -fx-font-weight: bold;
+    -fx-border-color: #836FFF;
+    -fx-border-width: 2px;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
     -fx-cursor: hand;
-    -fx-padding: 0 15;
+    -fx-padding: 8 20;
+    -fx-effect: dropshadow(gaussian, rgba(131, 111, 255, 0.2), 6, 0.3, 0, 2);
     -fx-alignment: center;
-    -fx-content-display: center;
     -fx-text-alignment: center;
 }
 
 .label-menu:hover {
-    -fx-text-fill: #003366;
+    -fx-background-color: #836FFF;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(131, 111, 255, 0.8), 12, 0.4, 0, 2);
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+
+.label-menu:pressed {
+    -fx-background-color: #5e4db2;
+    -fx-text-fill: white;
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
 }
 
 /* ===== Títulos Principais ===== */
@@ -91,61 +107,26 @@
     -fx-background-color: rgba(255, 255, 255, 0.1);
     -fx-border-color: #f0f0f0;
 }
+/* ===== Botão Estilizado sem Sombra ===== */
+ .fancy-button {
+     -fx-background-color: transparent;
+     -fx-text-fill: #836FFF;
+     -fx-border-color: #836FFF;
+     -fx-border-width: 2px;
+     -fx-border-radius: 30;
+     -fx-background-radius: 30;
+     -fx-font-size: 17px;
+     -fx-font-weight: bold;
+     -fx-pref-width: 200px;
+     -fx-pref-height: 50px;
+     -fx-cursor: hand;
+ }
 
-/* ===== Botão Estilizado com Sombra ===== */
-.fancy-button {
-    -fx-background-color: transparent;
-    -fx-text-fill: #836FFF;
-    -fx-border-color: #836FFF;
-    -fx-border-width: 2px;
-    -fx-border-radius: 30;
-    -fx-background-radius: 30;
-    -fx-font-size: 17px;
-    -fx-font-weight: bold;
-    -fx-pref-width: 200px;
-    -fx-pref-height: 50px;
-    -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(86, 11, 173, 0.4), 10, 0.2, 0, 0);
-}
+ .fancy-button:hover {
+     -fx-background-color: #836FFF;
+     -fx-text-fill: white;
+ }
 
-.fancy-button:hover {
-    -fx-background-color: #836FFF;
-    -fx-text-fill: white;
-    -fx-effect: dropshadow(gaussian, rgba(86, 11, 173, 0.8), 12, 0.4, 0, 2);
-}
-
-.fancy-button:pressed {
-    -fx-background-color: #3a0ca3;
-}
-
-/* ===== Caixa Decorativa ===== */
-.box {
-    -fx-background-color: transparent;
-    -fx-text-fill: black;
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
-    -fx-text-alignment: center;
-    -fx-alignment: center;
-    -fx-padding: 15px;
-    -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 2, 0.1, 0, 1);
-}
-
-.box:hover {
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 5, 0.2, 0, 4);
-    -fx-text-fill: #262626;
-}
-
-/* ===== Botão em Formato de Caixa ===== */
-.box-button {
-    -fx-background-color: transparent;
-    -fx-text-fill: black;
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
-    -fx-cursor: hand;
-    -fx-border-color: transparent;
-    -fx-padding: 15px 20px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 3, 0.1, 0, 1);
-    -fx-text-alignment: center;
-    -fx-alignment: center;
-}
+ .fancy-button:pressed {
+     -fx-background-color: #3a0ca3;
+ }
