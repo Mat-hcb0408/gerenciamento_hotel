@@ -1,0 +1,23 @@
+//controller
+@FXML
+    public void initialize() {
+    
+        carregarImagemLogo();
+}
+
+public void carregarImagemLogo() {
+        new Thread(() -> {
+            try {
+                String url = "https://raw.githubusercontent.com/Mat-hcb0408/gerenciamento_hotel/refs/heads/main/SkyWalker%20Hot%C3%A9is_claro.png";
+                Image imagem = new Image(url, true);
+                Platform.runLater(() -> Logo_Imagem.setImage(imagem));
+            } catch (Exception e) {
+                System.out.println("Erro ao carregar a imagem do logo: " + e.getMessage());
+            }
+        }).start();
+    }
+
+//fxml
+
+<!-- Logo -->
+            <ImageView fx:id="Logo_Imagem" fitHeight="240.0" fitWidth="375.0" preserveRatio="true" />
