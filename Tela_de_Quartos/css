@@ -1,0 +1,51 @@
+/* Fundo geral */
+.anchor-pane {
+    -fx-background-color: #1e1e30;
+}
+
+/* Título da seção */
+.section-title-small {
+    -fx-text-fill: #cccccc;
+    -fx-font-size: 14px;
+    -fx-font-family: "Bell MT";
+}
+
+.section-title-large {
+    -fx-text-fill: white;
+    -fx-font-size: 32px;
+    -fx-font-family: "Bell MT Bold";
+}
+
+/* Card do quarto */
+.room-card {
+    -fx-background-color: #2a2a40;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.2, 0, 4);
+}
+
+.room-image {
+    -fx-background-radius: 10 10 0 0;
+}
+
+.room-title {
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+}
+
+.room-description {
+    -fx-text-fill: #aaaaaa;
+}
+
+.room-price-symbol,
+.room-price-slash {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+.room-price {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
