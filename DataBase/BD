@@ -4,9 +4,8 @@ use gerenciamento_hotel;
 create table hospedes (
     id_hospede int primary key auto_increment,
     nome varchar(60),
-    senha varchar(255),
     nascimento date,
-    email VARCHAR(150) UNIQUE,
+    telefone char(11),
     tipo_pessoa ENUM('Física', 'Jurídica'),
     cpf char(11),
     cnpj varchar(14)
