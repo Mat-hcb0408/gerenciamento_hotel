@@ -20,7 +20,7 @@
     -fx-background-color: #2a2a40;
     -fx-background-radius: 16;
     -fx-padding: 30;
-    -fx-max-width: 400;
+    -fx-max-width: 600;  /* Alterado para 600px */
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);
 }
 
