@@ -4,6 +4,9 @@ import javafx.animation.ScaleTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
@@ -14,7 +17,22 @@ public class HelloController {
     private ImageView Logo_Imagem;
 
     @FXML
-    private Button cadastrarButton;
+    private TextField quartoField;
+
+    @FXML
+    private TextField cpfField;
+
+    @FXML
+    private DatePicker checkinPicker;
+
+    @FXML
+    private DatePicker checkoutPicker;
+
+    @FXML
+    private Label valorLabel;
+
+    @FXML
+    private Button finalizarButton;
 
     @FXML
     private Button cancelarButton;
@@ -23,6 +41,7 @@ public class HelloController {
     public void initialize() {
         carregarImagemLogo();
         configurarEfeitosHover();
+        configurarDatePickers();
     }
 
     public void carregarImagemLogo() {
@@ -38,8 +57,16 @@ public class HelloController {
     }
 
     private void configurarEfeitosHover() {
-        aplicarEfeitoHover(cadastrarButton);
+        aplicarEfeitoHover(finalizarButton);
         aplicarEfeitoHover(cancelarButton);
+    }
+
+    private void configurarDatePickers() {
+        // Configura os date pickers para não permitir edição manual
+        checkinPicker.getEditor().setDisable(true);
+        checkinPicker.getEditor().setOpacity(1);
+        checkoutPicker.getEditor().setDisable(true);
+        checkoutPicker.getEditor().setOpacity(1);
     }
 
     private void aplicarEfeitoHover(Button button) {
