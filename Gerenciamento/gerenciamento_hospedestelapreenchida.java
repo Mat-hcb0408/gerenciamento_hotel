@@ -25,9 +25,8 @@
             <columns>
                 <TableColumn prefWidth="76.0" text="ID" />
                 <TableColumn prefWidth="305.0" text="Nome" />
-                <TableColumn prefWidth="142.0" text="Senha" />
                 <TableColumn prefWidth="119.0" text="Nascimento" />
-                <TableColumn prefWidth="303.0" text="Gmail" />
+                <TableColumn prefWidth="303.0" text="Telefone" />
                 <TableColumn prefWidth="152.0" text="CPF" />
                 <TableColumn prefWidth="144.0" text="CNPJ" />
             </columns>
