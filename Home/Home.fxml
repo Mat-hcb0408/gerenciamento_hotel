@@ -4,60 +4,45 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <AnchorPane fx:id="rootPane" prefHeight="720.0" prefWidth="1280.0" styleClass="anchor-pane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.homehotel.HelloController">
 
-    <!-- Imagem de fundo -->
-    <ImageView fx:id="Praia_Imagem" pickOnBounds="true" preserveRatio="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-
-    <!-- Barra superior com menu -->
-    <StackPane fx:id="topBar" prefHeight="80.0" style="-fx-background-color: rgba(255,255,255,0.5); -fx-background-radius: 10;" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="30.0">
-        <HBox alignment="CENTER" spacing="40.0">
-            <!-- Container central para os botões principais -->
-            <HBox alignment="CENTER" spacing="40.0" HBox.hgrow="ALWAYS">
-                <children>
-                    <Button fx:id="menuButton1" styleClass="fancy-button" text="Gerenciar reservas" />
-                    <Button fx:id="menuButton2" styleClass="fancy-button" text="Quartos" />
-                    <Button fx:id="menuButton3" styleClass="fancy-button" text="Hóspedes" />
-                    <Button fx:id="menuButton4" prefWidth="225.0" styleClass="fancy-button" text="Pagamentos" />
-                </children>
-            </HBox>
-
-            <!-- Botão de Login com espaçamento ajustado -->
-            <Button fx:id="loginButton" minWidth="111.0" prefHeight="43.0" prefWidth="130.0" styleClass="login-button" text="Fazer Login">
-                <HBox.margin>
-                    <Insets left="80.0" right="20.0" /> <!-- Espaço antes e depois do botão -->
-                </HBox.margin>
-            </Button>
-        </HBox>
+    <!-- Imagem de fundo com overlay escuro para melhor contraste -->
+    <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ImageView fx:id="Praia_Imagem" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="false" />
+        <Pane style="-fx-background-color: rgba(0,0,0,0.3);" />
     </StackPane>
 
-    <Pane fx:id="overlayPane" opacity="0.5" prefHeight="534.0" prefWidth="1122.0" style="-fx-background-color: black; -fx-background-radius: 20;" AnchorPane.leftAnchor="79.0" AnchorPane.rightAnchor="79.0" AnchorPane.topAnchor="200.0" />
+     <!-- Logo alinhado à esquerda -->
+     <StackPane alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="140.0">
+         <ImageView fitHeight="60.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+     </StackPane>
 
-    <VBox alignment="CENTER" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0">
-        <children>
-            <ImageView fx:id="Logo_Imagem" fitHeight="240.0" fitWidth="375.0" preserveRatio="true" />
-            <Label alignment="CENTER" styleClass="titulo-principal" text="Bem-vindo ao Skywalker Hotel" textAlignment="CENTER">
-                <font>
-                    <Font name="Bodoni MT Poster Compressed" size="65.0" />
-                </font>
-            </Label>
-            <Label alignment="CENTER" styleClass="slogan" text="Sua estadia de outra galáxia" textAlignment="CENTER">
-                <font>
-                    <Font name="Agency FB" size="20.0" />
-                </font>
-            </Label>
-            <HBox alignment="CENTER" spacing="20.0">
-                <children>
-                    <Button fx:id="disponibilidadeButton" styleClass="fancy-button" text="Ver disponibilidade" />
-                </children>
+    <!-- Barra superior com menu moderno - agora perfeitamente alinhada -->
+    <HBox fx:id="topBar" alignment="CENTER" prefHeight="80.0" style="-fx-background-color: rgba(0,0,0,0.5);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <padding>
+            <Insets left="50.0" right="50.0" />
+        </padding>
+
+        <!-- Menu principal perfeitamente centralizado -->
+        <HBox alignment="CENTER" prefHeight="80.0" prefWidth="1216.0" spacing="30.0" HBox.hgrow="ALWAYS">
+            <Button fx:id="menuButton1" styleClass="menu-button" text="RESERVAS" />
+            <Button fx:id="menuButton2" styleClass="menu-button" text="QUARTOS" />
+            <Button fx:id="menuButton3" styleClass="menu-button" text="HÓSPEDES" />
+            <Button fx:id="menuButton4" styleClass="menu-button" text="PAGAMENTOS" />
+        </HBox>
+    </HBox>
+
+    <!-- Conteúdo central perfeitamente alinhado -->
+    <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+        <VBox alignment="CENTER" spacing="25.0">
+            <ImageView fx:id="Logo_Imagem" fitHeight="200.0" fitWidth="350.0" preserveRatio="true" />
+            <Label styleClass="titulo-principal" text="SKYWALKER HOTEL" textAlignment="CENTER" />
+            <Label styleClass="slogan" text="Sua estadia de outra galáxia" textAlignment="CENTER" />
+            <HBox alignment="CENTER" spacing="30.0">
+                <Button fx:id="disponibilidadeButton" styleClass="cta-button" text="VER DISPONIBILIDADE" />
             </HBox>
-        </children>
-    </VBox>
-
-    <padding>
-        <Insets bottom="20.0" />
-    </padding>
+        </VBox>
+    </StackPane>
 
 </AnchorPane>
