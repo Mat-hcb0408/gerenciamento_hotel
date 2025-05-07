@@ -1,96 +1,171 @@
-/* ===== Estilo Base ===== */
+/* ===== ROOT STYLES ===== */
+.root {
+    -fx-font-smoothing-type: lcd;
+}
+
 .anchor-pane {
-    -fx-background-color: linear-gradient(to bottom, #10192b, #1a2940);
+    -fx-background-color: transparent;
 }
 
-/* ===== Imagem de Fundo ===== */
-#Praia_Imagem {
-    -fx-opacity: 0.6;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0.2, 0, 4);
-    -fx-preserve-ratio: false;
-}
-
-/* ===== Barra Superior ===== */
 .top-bar {
-    -fx-background-color: rgba(255, 255, 255, 0.15);
-    -fx-background-radius: 10;
-    -fx-padding: 10 30;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0.2, 0, 2);
+     -fx-background-color: rgba(0, 0, 0, 0.5);
+     -fx-padding: 0 50px; /* Está ok, mas se exagerar aqui pode empurrar o conteúdo */
+     -fx-alignment: center;
+ }
+
+
+/* ===== TOP NAVIGATION BAR ===== */
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-family: 'Arial Narrow', sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px; /* Aumentado de 14px para 18px */
+    -fx-padding: 10px 20px; /* Ajustado para acomodar o texto maior */
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 0 2px 0;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 2, 0.1, 0, 1);
+    -fx-transition: all 0.3s ease;
 }
 
-/* ===== Títulos ===== */
-.titulo-principal {
-    -fx-font-family: "Bodoni MT Poster Compressed";
-    -fx-font-size: 135px;
-    -fx-text-fill: white;
+.menu-button:hover {
+    -fx-border-color: #7b2cbf;
+    -fx-text-fill: #7b2cbf;
+    -fx-effect: dropshadow(gaussian, rgba(123,44,191,0.4), 5, 0.3, 0, 2);
+    /* -fx-font-size: 19px;  <-- Remova esta linha */
+}
+
+
+/* ===== MAIN CONTENT AREA ===== */
+.main-content {
     -fx-alignment: center;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.5, 0, 1);
+    -fx-spacing: 25px;
+}
+
+.titulo-principal {
+    -fx-font-family: 'Bodoni MT', serif;
+    -fx-font-size: 72px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 10, 0.5, 0, 2);
+    -fx-letter-spacing: 3px;
+    -fx-text-alignment: center;
 }
 
 .slogan {
-    -fx-font-family: "Agency FB";
-    -fx-font-size: 40px;
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-font-size: 24px;
+    -fx-text-fill: #FFD700;
+    -fx-font-style: italic;
+}
+
+
+/* ===== CALL-TO-ACTION BUTTONS ===== */
+.cta-button {
+    -fx-background-color: #7b2cbf;
     -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-padding: 12 30;
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(123,44,191,0.5), 10, 0.3, 0, 2);
+    -fx-transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    -fx-background-color: #9a4fe6;
+    -fx-effect: dropshadow(gaussian, rgba(123,44,191,0.7), 15, 0.4, 0, 3);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.cta-button:pressed {
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+/* ===== SECONDARY BUTTONS ===== */
+.cta-button-secondary {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-padding: 12 30;
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px;
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease;
+}
+
+.cta-button-secondary:hover {
+    -fx-background-color: rgba(123,44,191,0.1);
+    -fx-text-fill: #7b2cbf;
+    -fx-border-color: #7b2cbf;
+}
+
+.register-button {
+    -fx-background-color: #7b2cbf;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 8 20;
+    -fx-background-radius: 20px;
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease;
+}
+
+.register-button:hover {
+    -fx-background-color: #9a4fe6;
+    -fx-effect: dropshadow(gaussian, rgba(123,44,191,0.5), 5, 0.3, 0, 2);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    -fx-background-color: rgba(0, 0, 0, 0.7);
+    -fx-padding: 15px 0;
     -fx-alignment: center;
 }
 
-/* ===== Botões Principais ===== */
-.fancy-button {
-    -fx-background-color: transparent;
+.footer-text {
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-font-size: 12px;
+    -fx-text-fill: #aaaaaa;
+}
+
+.footer-link {
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-font-size: 12px;
     -fx-text-fill: #7b2cbf;
-    -fx-border-color: #7b2cbf;
-    -fx-border-width: 2px;
-    -fx-border-radius: 30;
-    -fx-background-radius: 30;
-    -fx-font-size: 17px;
-    -fx-font-weight: bold;
-    -fx-pref-width: 200px;
-    -fx-pref-height: 50px;
+    -fx-border-color: transparent;
+    -fx-underline: false;
     -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(123,44,191,0.3), 5, 0.2, 0, 1);
+    -fx-transition: all 0.2s ease;
 }
 
-.fancy-button:hover {
-    -fx-background-color: #7b2cbf;
-    -fx-text-fill: white;
-    -fx-effect: dropshadow(gaussian, rgba(123,44,191,0.5), 10, 0.4, 0, 2);
+.footer-link:hover {
+    -fx-underline: true;
+    -fx-text-fill: #9a4fe6;
 }
 
-/* ===== Botão de Login ===== */
-.login-button {
-    -fx-background-color: #000000;
-    -fx-text-fill: white;
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-background-radius: 30;
-    -fx-padding: 8 20;
-    -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.2, 0, 2);
-}
+@media (max-width: 1024px) {
+    .titulo-principal {
+        -fx-font-size: 48px;
+    }
 
-.login-button:hover {
-    -fx-background-color: #333333;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0.3, 0, 3);
-}
+    .slogan {
+        -fx-font-size: 18px;
+    }
 
-/* ===== Efeitos de Arco-Íris para Celebração ===== */
-.rainbow-effect {
-    -fx-border-color: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
-    -fx-border-width: 3px;
-    -fx-border-radius: 30;
-    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.3), 15, 0.5, 0, 0);
-}
-
-/* ===== Botão Especial ===== */
-.pride-button {
-    -fx-background-color: linear-gradient(to right, #FF0018, #FFA52C, #FFFF41, #008018, #0000F9, #86007D);
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-background-radius: 30;
-    -fx-padding: 10 25;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.3, 0, 3);
-}
-
-.pride-button:hover {
-    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.5), 15, 0.5, 0, 0);
+    /* Comente ou remova essa parte */
+    /* .menu-button {
+        -fx-font-size: 12px;
+        -fx-padding: 6 10;
+    } */
 }
