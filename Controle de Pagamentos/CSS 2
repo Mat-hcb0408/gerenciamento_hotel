@@ -1,24 +1,24 @@
 /* Fundo geral */
 .anchor-pane {
-    -fx-background-color: #1e1e30;
-    -fx-padding: 20;
+    -fx-background-color: #10192b; /* Fundo escuro (azul/roxo bem escuro) */
+    -fx-padding: 10;
 }
 
-/* Barra superior */
+/* Barra superior (Título) */
 .top-bar {
-    -fx-background-color: #2a2a40;
+    -fx-background-color: #2a2a40; /* Azul/roxo mais claro */
     -fx-background-radius: 15;
 }
 
 /* Título principal */
 .heading-main {
     -fx-text-fill: white;
-    -fx-font-size: 24px;
-    -fx-font-family: "Bell MT Bold";
+    -fx-font-size: 30px;
+    -fx-font-family: "Bell MT";
     -fx-alignment: center;
 }
 
-/* Campo de entrada */
+/* Campo de entrada (TextField) */
 .input-field {
     -fx-background-color: transparent;
     -fx-text-fill: white;
@@ -28,22 +28,22 @@
     -fx-faint-focus-color: transparent;
 }
 
-/* Placeholder */
+/* Placeholder do campo de pesquisa */
 .input-field .text {
     -fx-prompt-text-fill: rgba(204, 204, 204, 0.5);
 }
 
-/* Quando focado */
+/* Quando o campo de entrada está focado */
 .input-field:focused {
     -fx-border-color: #7b2cbf;
     -fx-border-width: 0 0 2 0;
 }
 
-/* Botões roxos */
-.custom-button {
-    -fx-font-family: "Bell MT Bold";
+/* Botões de ação (Cadastrar, Editar, Excluir) */
+.action-button {
+    -fx-font-family: "Bell MT";
     -fx-font-size: 16px;
-    -fx-text-fill: #7b2cbf;
+    -fx-text-fill: #7b2cbf; /* Cor roxa para os textos dos botões */
     -fx-background-color: transparent;
     -fx-border-color: #7b2cbf;
     -fx-border-radius: 8;
@@ -53,12 +53,30 @@
     -fx-background-radius: 8;
 }
 
-.custom-button:hover {
+/* Efeito hover nos botões */
+.action-button:hover {
     -fx-background-color: #7b2cbf;
     -fx-text-fill: white;
 }
 
-/* Texto com link */
+/* Tabela */
+.table-view {
+    -fx-background-color: #1e1e30; /* Fundo escuro para a tabela */
+    -fx-text-fill: white; /* Texto em branco nas células */
+}
+
+/* Cabeçalhos da Tabela */
+.table-view .column-header-background {
+    -fx-background-color: #2a2a40; /* Fundo da linha de cabeçalhos */
+}
+
+/* Estilo da linha ativa da Tabela */
+.table-view .table-row-cell:filled:selected {
+    -fx-background-color: #7b2cbf;
+    -fx-text-fill: white;
+}
+
+/* Texto com link (caso necessário) */
 .link-text {
     -fx-text-fill: gray;
     -fx-font-size: 11px;
