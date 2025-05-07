@@ -28,20 +28,7 @@ public class HelloController {
 
     @FXML
     public void initialize() {
-        carregarImagemLogo();
         configurarEfeitosHover();
-    }
-
-    public void carregarImagemLogo() {
-        new Thread(() -> {
-            try {
-                String url = "https://raw.githubusercontent.com/Mat-hcb0408/gerenciamento_hotel/main/SkyWalker%20Hot%C3%A9is_claro.png";
-                Image imagem = new Image(url, true);
-                Platform.runLater(() -> Logo_Imagem.setImage(imagem));
-            } catch (Exception e) {
-                System.out.println("Erro ao carregar a imagem do logo: " + e.getMessage());
-            }
-        }).start();
     }
 
     private void configurarEfeitosHover() {
