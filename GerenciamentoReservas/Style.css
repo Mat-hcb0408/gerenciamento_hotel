@@ -1,0 +1,116 @@
+/* Main Background */
+.anchor-pane {
+    -fx-background-color: #10192b;
+    -fx-padding: 10;
+}
+
+/* Top Bar */
+.top-bar {
+    -fx-background-color: #2a2a40;
+    -fx-background-radius: 15;
+    -fx-padding: 10;
+    -fx-spacing: 20;
+    -fx-alignment: center;
+}
+
+/* Main Heading */
+.heading-main {
+    -fx-text-fill: white;
+    -fx-font-size: 30px;
+    -fx-font-family: "Bell MT Bold";
+    -fx-alignment: center;
+}
+
+/* Input Fields */
+.input-field {
+    -fx-background-color: #2a2a40;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-border-color: #7b2cbf;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-padding: 5 10;
+}
+
+.input-field .text {
+    -fx-prompt-text-fill: rgba(204, 204, 204, 0.7);
+}
+
+.input-field:focused {
+    -fx-border-width: 2;
+    -fx-border-color: #9d4edd;
+}
+
+/* Buttons */
+.custom-button {
+    -fx-font-family: "Bell MT Bold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #7b2cbf;
+    -fx-background-color: transparent;
+    -fx-border-color: #7b2cbf;
+    -fx-border-radius: 8;
+    -fx-border-width: 2;
+    -fx-cursor: hand;
+    -fx-padding: 5 15;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.2, 0, 0);
+}
+
+.custom-button:hover {
+    -fx-background-color: #7b2cbf;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0, 0);
+}
+
+/* Table Styling */
+.table-view {
+    -fx-background-color: #1e1e30;
+    -fx-border-color: #2a2a40;
+    -fx-border-radius: 10;
+    -fx-padding: 5;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #2a2a40;
+    -fx-background-radius: 10 10 0 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-family: "Bell MT";
+    -fx-font-size: 14px;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-border-color: transparent;
+    -fx-padding: 8 5;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: #1e1e30;
+    -fx-border-color: #2a2a40;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #252538;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #7b2cbf;
+    -fx-text-fill: white;
+}
+
+/* Scrollbar Styling */
+.table-view .scroll-bar:horizontal,
+.table-view .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.table-view .scroll-bar:horizontal .thumb,
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color: #7b2cbf;
+    -fx-background-radius: 5;
+}
