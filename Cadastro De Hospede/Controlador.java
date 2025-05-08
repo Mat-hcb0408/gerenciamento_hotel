@@ -1,4 +1,4 @@
-package org.example.demo3;
+package org.example.cadastro_hotel;
 
 import javafx.animation.ScaleTransition;
 import javafx.application.Platform;
