@@ -4,7 +4,6 @@ import javafx.animation.ScaleTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
@@ -14,8 +13,12 @@ public class HelloController {
     @FXML
     private ImageView Logo_Imagem;
 
+
     @FXML
     private Button cadastrarButton;
+
+    @FXML
+    private Button cancelarButton;
 
     @FXML
     private Button editarButton;
@@ -24,28 +27,13 @@ public class HelloController {
     private Button excluirButton;
 
     @FXML
-    private TableView<?> tabelaReservas;
-
-    @FXML
     public void initialize() {
-        carregarImagemLogo();
         configurarEfeitosHover();
     }
 
-    private void carregarImagemLogo() {
-        new Thread(() -> {
-            try {
-                String url = "https://raw.githubusercontent.com/Mat-hcb0408/gerenciamento_hotel/main/SkyWalker%20Hot%C3%A9is_claro.png";
-                Image imagem = new Image(url, true);
-                Platform.runLater(() -> Logo_Imagem.setImage(imagem));
-            } catch (Exception e) {
-                System.err.println("Erro ao carregar logo: " + e.getMessage());
-            }
-        }).start();
-    }
-
     private void configurarEfeitosHover() {
-        Button[] botoes = {cadastrarButton, editarButton, excluirButton};
+        // Atualizando a lista de botões
+        Button[] botoes = { cadastrarButton, cancelarButton, editarButton, excluirButton };
         for (Button botao : botoes) {
             if (botao != null) {
                 aplicarEfeitoHover(botao);
