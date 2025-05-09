@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1280.0" styleClass="anchor-pane" stylesheets="@../Css/GerencReservas.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.skywalkerhotel.skywalkerhotel.Controller.GerencReservasController">
+
+    <VBox spacing="10" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10">
+        <HBox alignment="CENTER" prefHeight="60.0" styleClass="top-bar" VBox.vgrow="NEVER" spacing="10.0">
+            <!-- Botão de voltar -->
+            <Button text="⟵ Voltar" styleClass="action-button" onAction="#handleVoltarAction" />
+
+            <!-- Espaçador invisível para empurrar o título para o centro -->
+            <Region HBox.hgrow="ALWAYS" />
+
+            <!-- Título centralizado -->
+            <Label alignment="CENTER" text="Gerenciamento De Reservas" styleClass="heading-main">
+                <font>
+                    <Font name="Bell MT" size="30.0" />
+                </font>
+            </Label>
+
+            <!-- Outro espaçador para manter o alinhamento do centro -->
+            <Region HBox.hgrow="ALWAYS" />
+        </HBox>
+
+        <!-- Área de busca e botões -->
+        <HBox spacing="10.0">
+            <TextField fx:id="txtPesquisar" prefHeight="35.0" promptText="🔍 Pesquisa" styleClass="input-field" HBox.hgrow="ALWAYS" />
+            <Button fx:id="cadastrarButton" prefHeight="35.0" styleClass="custom-button" text="Cadastrar" onAction="#handleCadastrarAction"/>
+            <Button fx:id="editarButton" prefHeight="35.0" styleClass="custom-button" text="Editar" onAction="#handleEditarAction"/>
+            <Button fx:id="excluirButton" prefHeight="35.0" styleClass="custom-button" text="Excluir" onAction="#handleExcluirAction"/>
+        </HBox>
+
+        <!-- Tabela -->
+        <TableView fx:id="tabelaReservas" styleClass="table-view" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="columnID" text="ID" prefWidth="50" />
+                <TableColumn fx:id="columnHospedeNome" text="Hóspede" prefWidth="140" />
+                <TableColumn fx:id="columnQuartoNome" text="Quarto" prefWidth="110" />
+                <TableColumn fx:id="columnidPagamento" text="ID Pagamento" prefWidth="130" />
+                <TableColumn fx:id="columnDataInicio" text="Início da Reserva" prefWidth="120" />
+                <TableColumn fx:id="columnDataFim" text="Fim da Reserva" prefWidth="130" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+    </VBox>
+</AnchorPane>

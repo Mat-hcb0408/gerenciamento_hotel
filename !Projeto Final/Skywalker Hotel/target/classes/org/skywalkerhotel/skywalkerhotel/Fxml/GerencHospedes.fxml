@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="anchorPane"
+            fx:controller="org.skywalkerhotel.skywalkerhotel.Controller.GerencHospedesController"
+            prefHeight="720.0" prefWidth="1280.0"
+            styleClass="anchor-pane"
+            stylesheets="@../Css/GerencHospedes.css"
+            xmlns="http://javafx.com/javafx/11.0.14-internal"
+            xmlns:fx="http://javafx.com/fxml/1">
+
+    <VBox spacing="10" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10">
+        <HBox alignment="CENTER" prefHeight="60.0" styleClass="top-bar" VBox.vgrow="NEVER" spacing="10.0">
+            <Button text="⟵ Voltar" styleClass="action-button" onAction="#handleVoltarAction" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label alignment="CENTER" text="Gerenciamento De Hospedes" styleClass="heading-main">
+                <font>
+                    <Font name="Bell MT" size="30.0" />
+                </font>
+            </Label>
+            <Region HBox.hgrow="ALWAYS" />
+        </HBox>
+
+        <HBox spacing="10.0">
+            <TextField fx:id="txtPesquisar" prefHeight="35.0" promptText="🔍 Pesquisa" styleClass="input-field" HBox.hgrow="ALWAYS" />
+            <Button fx:id="cadastrarButton" prefHeight="35.0" styleClass="custom-button" text="Cadastrar"  onAction="#handleCadastrarAction"/>
+            <Button fx:id="editarButton" prefHeight="35.0" styleClass="custom-button" text="Editar"  onAction="#handleEditarAction"/>
+            <Button fx:id="excluirButton" prefHeight="35.0" styleClass="custom-button" text="Excluir" onAction="#handleExcluirAction"/>
+        </HBox>
+
+        <TableView fx:id="tabelaHospedes" styleClass="table-view" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="columnID" text="ID" prefWidth="50" />
+                <TableColumn fx:id="columnNome" text="Nome" prefWidth="140" />
+                <TableColumn fx:id="columnNascimento" text="Nascimento" prefWidth="110" />
+                <TableColumn fx:id="columnTelefone" text="Telefone" prefWidth="130" />
+                <TableColumn fx:id="columnCPF" text="CPF" prefWidth="120" />
+                <TableColumn fx:id="columnCNPJ" text="CNPJ" prefWidth="130" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+    </VBox>
+</AnchorPane>
