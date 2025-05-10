@@ -171,3 +171,110 @@
     -fx-background-radius: 5;
 }
 
+/* DatePicker estilizado para o tema escuro/roxo */
+.date-picker {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #7b2cbf;
+}
+
+.date-picker:focused {
+    -fx-border-color: #9d4edd;
+}
+
+.date-picker .text-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.5);
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: #7b2cbf;
+}
+
+.date-picker .arrow {
+    -fx-background-color: white;
+}
+
+.date-picker-popup {
+    -fx-background-color: #2a2a40;
+    -fx-text-fill: white;
+}
+
+.date-picker-popup .month-year-pane {
+    -fx-background-color: #7b2cbf;
+    -fx-text-fill: white;
+}
+
+.date-picker-popup .calendar-pane .day-cell {
+    -fx-background-color: #2a2a40;
+    -fx-text-fill: white;
+}
+
+.date-picker-popup .calendar-pane .day-cell:hover {
+    -fx-background-color: #9d4edd;
+    -fx-text-fill: white;
+}
+
+.date-picker-popup .calendar-pane .day-cell:focused {
+    -fx-background-color: #5a189a;
+}
+
+.date-picker-popup .calendar-pane .day-cell:disabled {
+    -fx-opacity: 0.3;
+}
+
+/* Novo estilo para o Label que mostra o tipo de documento selecionado */
+.tipo-documento-label {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-family: "Bell MT";
+    -fx-background-color: transparent;
+    -fx-padding: 0 10;
+    -fx-alignment: center-left;
+    -fx-pref-width: 150px; /* Ajuste conforme necessário */
+}
+
+/* Ajuste no ComboBox para garantir que ele tenha o tamanho correto */
+.combo-box {
+
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-border-width: 0;
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.7);
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: white;
+    -fx-background-color: #2a2a40;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: #7b2cbf;
+    -fx-background-radius: 0;
+}
+
+.combo-box .arrow {
+    -fx-background-color: white;
+}
+
+.combo-box .list-view {
+    -fx-background-color: #2a2a40;
+    -fx-border-color: #7b2cbf;
+}
+
+.combo-box .list-cell:filled:hover {
+    -fx-background-color: #7b2cbf;
+    -fx-text-fill: white;
+}
+
+.combo-box:focused {
+    -fx-border-color: #7b2cbf;
+    -fx-border-width: 0 0 2 0;
+}
+
+
+
