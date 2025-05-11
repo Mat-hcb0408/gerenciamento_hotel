@@ -9,15 +9,20 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.skywalkerhotel.skywalkerhotel.Directory.Conexao;
 import org.skywalkerhotel.skywalkerhotel.Model.Entitys.Quartos;
+import org.skywalkerhotel.skywalkerhotel.Model.Utils.CsvExporter;
 import org.skywalkerhotel.skywalkerhotel.Model.Utils.JanelaUtil;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.*;
-import java.text.NumberFormat;
+        import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class DispQuartosController {
@@ -187,25 +192,67 @@ public class DispQuartosController {
 
     // Método para o botão Excluir
     @FXML
-private void handleExcluirAction() {
-    Quartos quartoSelecionado = tableViewQuartos.getSelectionModel().getSelectedItem();
-    if (quartoSelecionado != null) {
-        String deleteQuery = "DELETE FROM quartos WHERE id_quarto = ?";
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(deleteQuery)) {
+    private void handleExcluirAction() {
+        Quartos quartoSelecionado = tableViewQuartos.getSelectionModel().getSelectedItem();
+        if (quartoSelecionado != null) {
+            String deleteQuery = "DELETE FROM quartos WHERE id_quarto = ?";
+            try (Connection conn = Conexao.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(deleteQuery)) {
 
-            pstmt.setInt(1, quartoSelecionado.getIdQuarto());
-            pstmt.executeUpdate();
-            quartosList.remove(quartoSelecionado); // Atualiza a lista na UI
-            System.out.println("Quarto excluído: " + quartoSelecionado.getNome());
+                pstmt.setInt(1, quartoSelecionado.getIdQuarto());
+                pstmt.executeUpdate();
+                quartosList.remove(quartoSelecionado); // Atualiza a lista na UI
+                System.out.println("Quarto excluído: " + quartoSelecionado.getNome());
 
-        } catch (SQLIntegrityConstraintViolationException e) {
-            System.out.println("Erro: Quarto vinculado a uma reserva. Delete não permitido.");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    } else {
-        System.out.println("Nenhum quarto selecionado para excluir.");
+            } catch (SQLIntegrityConstraintViolationException e) {
+                System.out.println("Erro: Quarto vinculado a uma reserva. Delete não permitido.");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Nenhum quarto selecionado para excluir.");
         }
     }
+
+    @FXML
+    private void handleExportarCSV() {
+        try {
+            // Cria o FileChooser para salvar o arquivo CSV
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+
+            // Define o nome padrão para o arquivo
+            fileChooser.setInitialFileName("relatorio_quartos.csv");
+
+            // Abre a janela de diálogo para salvar o arquivo
+            File file = fileChooser.showSaveDialog(null);
+
+            if (file != null) {
+                // Cria a lista de dados para exportar
+                List<String[]> data = new ArrayList<>();
+                data.add(new String[]{"ID", "Nome", "Casal", "Solteiro", "Max Pessoas", "Status", "Valor"});
+
+                // Adiciona os dados dos quartos
+                for (Quartos quarto : quartosList) {
+                    data.add(new String[]{
+                            String.valueOf(quarto.getIdQuarto()),
+                            quarto.getNome(),
+                            String.valueOf(quarto.isCasal()),
+                            String.valueOf(quarto.isSolteiro()),
+                            String.valueOf(quarto.getMaxPessoas()),
+                            quarto.getStatus(),
+                            String.valueOf(quarto.getPreco())
+                    });
+                }
+
+                // Exporta os dados para o arquivo escolhido
+                CsvExporter.export(file.getAbsolutePath(), data);
+                System.out.println("CSV exportado com sucesso para: " + file.getAbsolutePath());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
