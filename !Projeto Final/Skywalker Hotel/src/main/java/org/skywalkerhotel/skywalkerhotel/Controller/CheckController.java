@@ -74,6 +74,24 @@ public class CheckController {
 
         configureCpfCnpjField(cpfField, tipoDocumento);
 
+        quartosComboBox.setOnAction(event -> {
+            String nomeQuarto = quartosComboBox.getValue();
+
+            if (nomeQuarto == null || nomeQuarto.trim().isEmpty()) {
+                valorLabel.setText("Nenhum quarto selecionado");
+                return;
+            }
+
+            try {
+                double preco = obterPrecoQuarto(nomeQuarto); // Passando nomeQuarto como argumento
+                valorLabel.setText(String.format("R$ %.2f", preco));
+            } catch (SQLException e) {
+                valorLabel.setText("Erro ao obter preço");
+                e.printStackTrace(); // Se quiser esconder totalmente o erro, remova isso também
+            }
+        });
+
+
 
     }
 
@@ -360,21 +378,24 @@ public class CheckController {
         LocalDate checkinDate = checkinPicker.getValue();
         LocalDate checkoutDate = checkoutPicker.getValue();
 
-        // Verifica se as datas são válidas
         if (checkinDate != null && checkoutDate != null) {
-            // Calcula a diferença entre as datas (em dias)
             long diasDeEstadia = java.time.temporal.ChronoUnit.DAYS.between(checkinDate, checkoutDate);
 
             if (diasDeEstadia > 0) {
-                // Obter o preço do quarto
-                double precoQuarto = obterPrecoQuarto();  // Essa função precisa retornar o valor do preço do quarto
-                double valorTotal = diasDeEstadia * precoQuarto; // Cálculo simples: dias * preço do quarto
-                return valorTotal;
+                try {
+                    String nomeQuarto = quartosComboBox.getValue(); // ou de onde quer que venha o nome
+                    double precoQuarto = obterPrecoQuarto(nomeQuarto); // ✅ Correto
+
+                    return diasDeEstadia * precoQuarto;
+                } catch (SQLException e) {
+                    e.printStackTrace(); // Ou log para o usuário
+                }
             }
         }
 
-        return 0; // Se as datas não forem válidas ou o valor for 0, retorna 0
+        return 0;
     }
+
 
     private void atualizarValorEstadia() {
         double valorTotal = calcularValorTotal();
@@ -382,10 +403,28 @@ public class CheckController {
         valorLabel.setText(valorFormatado);
     }
 
-    private double obterPrecoQuarto() {
-        // Exemplo de como obter o preço do quarto, dependendo de sua lógica
-        return 150.00; // Substitua esse valor pelo valor real do quarto
+
+
+    public double obterPrecoQuarto(String nomeQuarto) throws SQLException {
+
+        if (nomeQuarto == null || nomeQuarto.trim().isEmpty()) {
+            return -1;
+        }
+
+        try (Connection conn = Conexao.getConnection()) {
+            String sql = "SELECT preco_quarto FROM quartos WHERE nome_quarto = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, nomeQuarto);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getDouble("preco_quarto");
+            } else {
+                throw new SQLException("Quarto não encontrado.");
+            }
+        }
     }
+
 
     // Método para obter o ID do quarto selecionado
     private int pegarIdQuartoSelecionado() throws SQLException {
