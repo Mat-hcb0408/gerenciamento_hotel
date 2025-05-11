@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane styleClass="anchor-pane" stylesheets="@../Css/Cadastros.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.skywalkerhotel.skywalkerhotel.Controller.UpdateReservasController">
+
+    <!-- ScrollPane envolvendo todo o VBox -->
+    <ScrollPane fitToHeight="true" fitToWidth="true" prefWidth="620.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox fillWidth="true" spacing="0">
+
+            <!-- Título -->
+            <StackPane>
+                <Label styleClass="heading-main" text="Edicão de Reserva Quartos">
+                    <font>
+                        <Font name="Bell MT" size="12.0" />
+                    </font>
+                </Label>
+            </StackPane>
+
+            <!-- Conteúdo Central -->
+            <StackPane alignment="CENTER" VBox.vgrow="ALWAYS">
+                <VBox alignment="CENTER" prefHeight="757.0" prefWidth="600.0" spacing="20" styleClass="form-card">
+                    <!-- Logo -->
+                    <ImageView fx:id="Logo_Imagem" fitHeight="240.0" fitWidth="375.0" preserveRatio="true" />
+
+
+                    <VBox alignment="CENTER_LEFT" spacing="5">
+                        <Label styleClass="form-label" text="ID  Hospede" />
+                        <TextField fx:id="idHospedeField" promptText="digite o nome aqui" styleClass="input-field" />
+                    </VBox>
+                    <VBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="555.0" spacing="5">
+                        <Label styleClass="form-label" text="Escolher quartos" />
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <ComboBox fx:id="quartosComboBox" prefHeight="35.0" prefWidth="555.0" promptText="Selecione o quarto" styleClass="combo-box">
+                                <items>
+                                    <!-- Itens serão adicionados no controller -->
+                                </items>
+                            </ComboBox>
+                        </HBox>
+                    </VBox>
+               <VBox alignment="CENTER_LEFT" spacing="5">
+                  <children>
+                     <Label styleClass="form-label" text="ID Pagamento" />
+                     <TextField fx:id="idPagamentoField" promptText="digite o id aqui" styleClass="input-field" />
+                  </children>
+               </VBox>
+                    <!-- Data de Check-in -->
+                    <VBox alignment="CENTER_LEFT" spacing="5">
+                        <Label styleClass="form-label" text="Data de Check-in" />
+                        <DatePicker fx:id="inicioDaReserva" prefHeight="25.0" prefWidth="1307.0" styleClass="input-field" />
+                    </VBox>
+
+                    <!-- Data de Check-out -->
+                    <VBox alignment="CENTER_LEFT" spacing="5">
+                        <Label styleClass="form-label" text="Data de Check-out" />
+                        <DatePicker fx:id="fimDaReserva" prefHeight="25.0" prefWidth="1307.0" styleClass="input-field" />
+                    </VBox>
+
+
+
+                    <!-- Botões -->
+                    <HBox alignment="CENTER" spacing="30">
+                        <Button fx:id="salvarButton" styleClass="custom-button" text="Salvar"  onAction="#handleSalvarAction"/>
+                        <Button fx:id="cancelarButton" onAction="#handleVoltarAction" styleClass="custom-button" text="Cancelar" />
+                    </HBox>
+                </VBox>
+            </StackPane>
+        </VBox>
+    </ScrollPane>
+</AnchorPane>
