@@ -7,14 +7,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.skywalkerhotel.skywalkerhotel.Directory.Conexao;
 import org.skywalkerhotel.skywalkerhotel.Model.Entitys.Pagamentos;
 import org.skywalkerhotel.skywalkerhotel.Model.Entitys.Quartos;
+import org.skywalkerhotel.skywalkerhotel.Model.Utils.CsvExporter;
 import org.skywalkerhotel.skywalkerhotel.Model.Utils.JanelaUtil;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ControlPagController {
 
@@ -180,4 +186,45 @@ public class ControlPagController {
             System.out.println("Nenhum pagamento selecionado para excluir.");
         }
     }
+    @FXML
+    private void handleExportarCSV() {
+        try {
+            // Cria o FileChooser para salvar o arquivo CSV
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+
+            // Define o nome padrão para o arquivo
+            fileChooser.setInitialFileName("relatorio_pagamentos.csv");
+
+            // Abre a janela de diálogo para salvar o arquivo
+            File file = fileChooser.showSaveDialog(null);
+
+            if (file != null) {
+                // Cria a lista de dados para exportar
+                List<String[]> data = new ArrayList<>();
+                data.add(new String[]{"ID", "Data Pagamento", "Descrição", "Tipo Despesa", "Preço Quarto", "Valor Pagamento", "Total Pagamento"});
+
+                // Adiciona os dados dos pagamentos
+                for (Pagamentos pagamento : pagamentosList) {
+                    data.add(new String[]{
+                            String.valueOf(pagamento.getIdPagamento()),
+                            pagamento.getDataPagamento().toString(),
+                            pagamento.getDescricaoPagamento(),
+                            pagamento.getTipoDespesa(),
+                            String.valueOf(pagamento.getPrecoQuarto()),
+                            String.valueOf(pagamento.getValorPagamento()),
+                            String.valueOf(pagamento.getTotalPagamento())
+                    });
+                }
+
+                // Exporta os dados para o arquivo escolhido
+                CsvExporter.export(file.getAbsolutePath(), data);
+                System.out.println("CSV exportado com sucesso para: " + file.getAbsolutePath());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
