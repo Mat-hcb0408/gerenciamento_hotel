@@ -187,22 +187,25 @@ public class DispQuartosController {
 
     // Método para o botão Excluir
     @FXML
-    private void handleExcluirAction() {
-        Quartos quartoSelecionado = tableViewQuartos.getSelectionModel().getSelectedItem();
-        if (quartoSelecionado != null) {
-            String deleteQuery = "DELETE FROM quartos WHERE id_quarto = ?";
-            try (Connection conn = Conexao.getConnection();
-                 PreparedStatement pstmt = conn.prepareStatement(deleteQuery)) {
+private void handleExcluirAction() {
+    Quartos quartoSelecionado = tableViewQuartos.getSelectionModel().getSelectedItem();
+    if (quartoSelecionado != null) {
+        String deleteQuery = "DELETE FROM quartos WHERE id_quarto = ?";
+        try (Connection conn = Conexao.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(deleteQuery)) {
 
-                pstmt.setInt(1, quartoSelecionado.getIdQuarto());
-                pstmt.executeUpdate();
-                quartosList.remove(quartoSelecionado); // Atualiza a lista na UI
-                System.out.println("Quarto excluído: " + quartoSelecionado.getNome());
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("Nenhum quarto selecionado para excluir.");
+            pstmt.setInt(1, quartoSelecionado.getIdQuarto());
+            pstmt.executeUpdate();
+            quartosList.remove(quartoSelecionado); // Atualiza a lista na UI
+            System.out.println("Quarto excluído: " + quartoSelecionado.getNome());
+
+        } catch (SQLIntegrityConstraintViolationException e) {
+            System.out.println("Erro: Quarto vinculado a uma reserva. Delete não permitido.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    } else {
+        System.out.println("Nenhum quarto selecionado para excluir.");
         }
     }
 }
