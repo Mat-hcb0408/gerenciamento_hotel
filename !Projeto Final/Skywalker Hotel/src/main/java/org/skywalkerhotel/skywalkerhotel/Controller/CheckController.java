@@ -340,19 +340,10 @@ public class CheckController {
 
     // Método para carregar tipos de pessoa para ComboBox
     private void carregarTiposDePessoa() {
-        try (Connection conn = Conexao.getConnection()) {
-            String sql = "SELECT DISTINCT tipo_pessoa FROM hospedes WHERE tipo_pessoa IS NOT NULL";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                tipoDocumento.getItems().add(rs.getString("tipo_pessoa"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            mostrarMensagem("Erro ao carregar tipos de pessoa.");
-        }
+        tipoDocumento.getItems().clear(); // Limpa itens anteriores, se necessário
+        tipoDocumento.getItems().addAll("Física", "Jurídica");
     }
+
 
     // Carregar quartos disponíveis
     private void carregarQuartosDisponiveis() {
