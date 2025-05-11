@@ -17,11 +17,14 @@ import javafx.util.Duration;
 import org.skywalkerhotel.skywalkerhotel.Directory.Conexao;
 import org.skywalkerhotel.skywalkerhotel.Model.Entitys.Quartos;
 import org.skywalkerhotel.skywalkerhotel.Model.Entitys.Reservas;
+import org.skywalkerhotel.skywalkerhotel.Model.Utils.CsvExporter;
 import org.skywalkerhotel.skywalkerhotel.Model.Utils.JanelaUtil;
 
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GerencReservasController {
 
@@ -30,6 +33,8 @@ public class GerencReservasController {
     @FXML private Button cadastrarButton;
     @FXML private Button editarButton;
     @FXML private Button excluirButton;
+    @FXML private Button exportarCSVButton;
+
 
     @FXML private TableView<Reservas> tabelaReservas;
     @FXML private TableColumn<Reservas, Integer> columnID;
@@ -55,6 +60,7 @@ public class GerencReservasController {
         loadReservasFromDatabase();
 
         txtPesquisar.textProperty().addListener((observable, oldValue, newValue) -> filtrarTabela(newValue));
+        exportarCSVButton.setOnAction(event -> handleExportarCSV());
     }
 
     @FXML
@@ -228,4 +234,31 @@ public class GerencReservasController {
             System.out.println("Nenhuma reserva selecionada para excluir.");
         }
     }
+    @FXML
+    private void handleExportarCSV() {
+        try {
+            List<String[]> data = new ArrayList<>();
+            data.add(new String[]{"ID", "Hóspede", "Quarto", "ID Pagamento", "Início", "Fim"});
+
+            for (Reservas r : reservasList) {
+                data.add(new String[]{
+                        String.valueOf(r.getIdReserva()),
+                        r.getNomeHospede(),
+                        r.getNomeQuarto(),
+                        String.valueOf(r.getIdPagamento()),
+                        r.getInicioDataReserva().toString(),
+                        r.getFimDataReserva().toString()
+                });
+            }
+
+            String downloadsPath = System.getProperty("user.home") + "/Downloads/relatorio_reservas.csv";
+            CsvExporter.export(downloadsPath, data);
+            System.out.println("CSV exportado com sucesso para: " + downloadsPath);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
