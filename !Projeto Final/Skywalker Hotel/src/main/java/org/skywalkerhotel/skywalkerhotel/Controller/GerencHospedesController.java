@@ -161,7 +161,7 @@ public class GerencHospedesController {
                 Hospedes hospede = new Hospedes(
                         rs.getInt("id_hospede"),
                         rs.getString("nome"),
-                        rs.getString("nascimento"),
+                        rs.getDate("nascimento").toLocalDate(),
                         rs.getString("telefone"),
                         rs.getString("tipo_pessoa"),
                         rs.getString("cpf"),
