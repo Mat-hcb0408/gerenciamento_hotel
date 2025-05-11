@@ -5,25 +5,26 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.skywalkerhotel.skywalkerhotel.Directory.Conexao;
 import org.skywalkerhotel.skywalkerhotel.Model.Entitys.Hospedes;
-import org.skywalkerhotel.skywalkerhotel.Model.Entitys.Quartos;
+import org.skywalkerhotel.skywalkerhotel.Model.Utils.CsvExporter;
 import org.skywalkerhotel.skywalkerhotel.Model.Utils.JanelaUtil;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GerencHospedesController {
 
@@ -122,7 +123,7 @@ public class GerencHospedesController {
                 Hospedes hospede = new Hospedes(
                         rs.getInt("id_hospede"),
                         rs.getString("nome"),
-                        rs.getString("nascimento"),
+                        rs.getDate("nascimento").toLocalDate(),
                         rs.getString("telefone"),
                         rs.getString("tipo_pessoa"),
                         rs.getString("cpf"),
@@ -161,7 +162,7 @@ public class GerencHospedesController {
                 Hospedes hospede = new Hospedes(
                         rs.getInt("id_hospede"),
                         rs.getString("nome"),
-                        rs.getString("nascimento"),
+                        rs.getDate("nascimento").toLocalDate(),
                         rs.getString("telefone"),
                         rs.getString("tipo_pessoa"),
                         rs.getString("cpf"),
@@ -188,21 +189,13 @@ public class GerencHospedesController {
 
     // Método para o botão Editar
     @FXML
-    private void handleEditarAction(ActionEvent event) {
-        Hospedes hospedeSelecionado=tabelaHospedes.getSelectionModel().getSelectedItem();
-        if (hospedeSelecionado!=null){
-            try {
-                FXMLLoader loader=new FXMLLoader(getClass().getResource("/org/skywalkerhotel/skywalkerhotel/Fxml/UpdateHospedes.fxml"));
-                Parent root=loader.load();
-                UpdateHospedeController controller=loader.getController();
-
-                controller.setHospede(hospedeSelecionado, this::loadHospedesFromDatabase);
-                Stage stage=new Stage();
-                stage.setScene(new Scene(root));
-                stage.show();
-            }catch (IOException e){
-                e.printStackTrace();
-            }
+    private void handleEditarAction() {
+        Hospedes hospedeSelecionado = tabelaHospedes.getSelectionModel().getSelectedItem();
+        if (hospedeSelecionado != null) {
+            System.out.println("Editar hóspede: " + hospedeSelecionado.getNome());
+            // Aqui você pode abrir um formulário para editar as informações do hóspede
+        } else {
+            System.out.println("Nenhum hóspede selecionado.");
         }
     }
 
@@ -236,5 +229,46 @@ public class GerencHospedesController {
             System.out.println("Nenhum hóspede selecionado para excluir.");
         }
     }
+
+    @FXML
+    private void handleExportarCSV() {
+        try {
+            // Cria o FileChooser para salvar o arquivo CSV
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+
+            // Define o nome padrão para o arquivo
+            fileChooser.setInitialFileName("relatorio_hospedes.csv");
+
+            // Abre a janela de diálogo para salvar o arquivo
+            File file = fileChooser.showSaveDialog(null);
+
+            if (file != null) {
+                // Cria a lista de dados para exportar
+                List<String[]> data = new ArrayList<>();
+                data.add(new String[]{"ID", "Nome", "Nascimento", "Telefone", "CPF", "CNPJ"});
+
+                // Adiciona os dados dos hóspedes
+                for (Hospedes h : hospedesList) {
+                    data.add(new String[]{
+                            String.valueOf(h.getId()),
+                            h.getNome(),
+                            h.getNascimento().toString(),
+                            h.getTelefone(),
+                            h.getCpf(),
+                            h.getCnpj()
+                    });
+                }
+
+                // Exporta os dados para o arquivo escolhido
+                CsvExporter.export(file.getAbsolutePath(), data);
+                System.out.println("CSV exportado com sucesso para: " + file.getAbsolutePath());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
