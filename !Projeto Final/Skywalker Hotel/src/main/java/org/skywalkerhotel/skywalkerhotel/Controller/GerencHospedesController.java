@@ -117,7 +117,7 @@ public class GerencHospedesController {
                 Hospedes hospede = new Hospedes(
                         rs.getInt("id_hospede"),
                         rs.getString("nome"),
-                        rs.getDate("nascimento").toLocalDate(),
+                        rs.getString("nascimento"),
                         rs.getString("telefone"),
                         rs.getString("tipo_pessoa"),
                         rs.getString("cpf"),
@@ -156,7 +156,7 @@ public class GerencHospedesController {
                 Hospedes hospede = new Hospedes(
                         rs.getInt("id_hospede"),
                         rs.getString("nome"),
-                        rs.getDate("nascimento").toLocalDate(),
+                        rs.getString("nascimento"),
                         rs.getString("telefone"),
                         rs.getString("tipo_pessoa"),
                         rs.getString("cpf"),
@@ -176,10 +176,9 @@ public class GerencHospedesController {
 
     // Método para o botão Cadastrar
     @FXML
-    private void handleCadastrarAction() {
-        // Implementar cadastro de um novo hóspede
-        System.out.println("Cadastrar novo hóspede");
-        // Você pode abrir um formulário para o cadastro de um hóspede
+    private void handleCadastrarAction(ActionEvent event) {
+        Stage stage=(Stage) ((Node) event.getSource()).getScene().getWindow();
+        JanelaUtil.trocarCenaComEstado(stage, "/org/skywalkerhotel/skywalkerhotel/Fxml/CadastroHospedes.fxml");
     }
 
     // Método para o botão Editar
