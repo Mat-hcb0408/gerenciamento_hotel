@@ -1,141 +1,59 @@
 package org.skywalkerhotel.skywalkerhotel.Controller;
 
-import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.animation.ScaleTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.skywalkerhotel.skywalkerhotel.Directory.Conexao;
-import org.skywalkerhotel.skywalkerhotel.Model.Entitys.Quartos;
+import org.skywalkerhotel.skywalkerhotel.Model.Entitys.Hospedes;
 import org.skywalkerhotel.skywalkerhotel.Model.Utils.JanelaUtil;
 
 import java.sql.*;
 
-public class DispQuartosController {
+public class GerencHospedesController {
 
-    // Referências dos controles FXML
-    @FXML
-    private TableView<Quartos> tableViewQuartos;
-
-    @FXML
-    private TableColumn<Quartos, Integer> colId;
-    @FXML
-    private TableColumn<Quartos, String> colNome;
-    @FXML
-    private TableColumn<Quartos, Integer> colCasal;
-    @FXML
-    private TableColumn<Quartos, Integer> colSolteiro;
-    @FXML
-    private TableColumn<Quartos, Integer> colMax;
-    @FXML
-    private TableColumn<Quartos, String> colStatus;
-    @FXML
-    private TableColumn<Quartos, Double> colValor;
-
-
+    @FXML private ImageView Logo_Imagem;
     @FXML
     private TextField txtPesquisar;
-    @FXML
-    private Button btnCadastrar;
-    @FXML
-    private Button btnEditar;
-    @FXML
-    private Button btnExcluir;
+    @FXML private Button cadastrarButton;
+    @FXML private Button editarButton;
+    @FXML private Button excluirButton;
 
-    private ObservableList<Quartos> quartosList;
+    @FXML private TableView<Hospedes> tabelaHospedes;
+    @FXML private TableColumn<Hospedes, Integer> columnID;
+    @FXML private TableColumn<Hospedes, String> columnNome;
+    @FXML private TableColumn<Hospedes, String> columnNascimento;
+    @FXML private TableColumn<Hospedes, String> columnTelefone;
+    @FXML private TableColumn<Hospedes, String> columnCPF;
+    @FXML private TableColumn<Hospedes, String> columnCNPJ;
 
-    // Método para inicializar a tabela com dados do banco de dados
+    private ObservableList<Hospedes> hospedesList;
+
+    @FXML
     public void initialize() {
-        // Inicializa as colunas
-        colId.setCellValueFactory(cellData -> cellData.getValue().idQuartoProperty().asObject());
-        colNome.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
-        colCasal.setCellValueFactory(cellData -> cellData.getValue().casalProperty().asObject());
-        colSolteiro.setCellValueFactory(cellData -> cellData.getValue().solteiroProperty().asObject());
-        colMax.setCellValueFactory(cellData -> cellData.getValue().maxPessoasProperty().asObject());
-        colStatus.setCellValueFactory(cellData -> cellData.getValue().statusProperty());
-        colValor.setCellValueFactory(cellData -> cellData.getValue().precoProperty().asObject());
+        columnID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        columnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        columnNascimento.setCellValueFactory(new PropertyValueFactory<>("nascimento"));
+        columnTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+        columnCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        columnCNPJ.setCellValueFactory(new PropertyValueFactory<>("cnpj"));
 
+        configurarEfeitosHover();
 
-        // Carregar os dados do banco de dados
-        loadQuartosFromDatabase();
+        // Carregar dados na tabela
+        loadHospedesFromDatabase();
 
-        // Ação do botão de pesquisa
         txtPesquisar.textProperty().addListener((observable, oldValue, newValue) -> filtrarTabela(newValue));
-
-        // Ações dos botões
-        btnCadastrar.setOnAction(event -> handleCadastrarAction());
-        btnEditar.setOnAction(event -> handleEditarAction());
-        btnExcluir.setOnAction(event -> handleExcluirAction());
-    }
-
-    // Método para carregar quartos do banco de dados
-    private void loadQuartosFromDatabase() {
-        quartosList = FXCollections.observableArrayList();
-        String query = "SELECT * FROM quartos";
-        try (Connection conexao = Conexao.getConnection();
-             Statement stmt = conexao.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
-
-            while (rs.next()) {
-                Quartos quarto = new Quartos(
-                        rs.getInt("id_quarto"),
-                        rs.getString("nome_quarto"),
-                        rs.getInt("cama_casal_quarto"),
-                        rs.getInt("cama_solteiro_quarto"),
-                        rs.getInt("quant_pessoas"),
-                        rs.getString("status_quarto"),
-                        rs.getDouble("preco_quarto")
-                );
-                quartosList.add(quarto);
-            }
-            tableViewQuartos.setItems(quartosList);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    // Método de filtro de pesquisa
-    private void filtrarTabela(String filtro) {
-        ObservableList<Quartos> resultados = FXCollections.observableArrayList();
-
-        String query="SELECT * FROM quartos WHERE " +
-                "CAST(id_quarto AS CHAR) LIKE ? OR " +
-                "nome_quarto LIKE ? OR " +
-                "cama_casal_quarto LIKE ? OR " +
-                "cama_solteiro_quarto LIKE ? OR " +
-                "quant_pessoas LIKE ? OR " +
-                "status_quarto LIKE ? OR " +
-                "preco_quarto LIKE ?";
-
-        try (Connection conn= Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-
-            for (int i = 1; i <= 7; i++) {
-                stmt.setString(i, "%" + filtro + "%");
-            }
-
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()){
-                Quartos c=new Quartos(
-                        rs.getInt("id_quarto"),
-                        rs.getString("nome_quarto"),
-                        rs.getInt("cama_casal_quarto"),
-                        rs.getInt("cama_solteiro_quarto"),
-                        rs.getInt("quant_pessoas"),
-                        rs.getString("status_quarto"),
-                        rs.getDouble("preco_quarto")
-                );
-                resultados.add(c);
-            }
-            this.tableViewQuartos.setItems(resultados);
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
     }
 
     @FXML
@@ -144,23 +62,135 @@ public class DispQuartosController {
         JanelaUtil.trocarCenaComEstado(stage, "/org/skywalkerhotel/skywalkerhotel/Fxml/Home.fxml");
     }
 
+    private void configurarEfeitosHover() {
+        Button[] botoes = { cadastrarButton, editarButton, excluirButton };
+        for (Button botao : botoes) {
+            if (botao != null) {
+                aplicarEfeitoHover(botao);
+                aplicarEfeitoClique(botao);
+            }
+        }
+    }
+
+    private void aplicarEfeitoHover(Button button) {
+        ScaleTransition scaleUp = new ScaleTransition(Duration.millis(200), button);
+        scaleUp.setToX(1.05);
+        scaleUp.setToY(1.05);
+
+        ScaleTransition scaleDown = new ScaleTransition(Duration.millis(200), button);
+        scaleDown.setToX(1.0);
+        scaleDown.setToY(1.0);
+
+        button.setOnMouseEntered(e -> {
+            scaleUp.playFromStart();
+            button.setStyle("-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0, 0);");
+        });
+
+        button.setOnMouseExited(e -> {
+            scaleDown.playFromStart();
+            button.setStyle("-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.2, 0, 0);");
+        });
+    }
+
+    private void aplicarEfeitoClique(Button button) {
+        ScaleTransition clickScale = new ScaleTransition(Duration.millis(100), button);
+        clickScale.setToX(0.95);
+        clickScale.setToY(0.95);
+
+        ScaleTransition releaseScale = new ScaleTransition(Duration.millis(100), button);
+        releaseScale.setToX(1.0);
+        releaseScale.setToY(1.0);
+
+        button.setOnMousePressed(e -> clickScale.playFromStart());
+        button.setOnMouseReleased(e -> releaseScale.playFromStart());
+    }
+
+    // Método para carregar hóspedes do banco de dados
+    private void loadHospedesFromDatabase() {
+        hospedesList = FXCollections.observableArrayList();
+        String query = "SELECT * FROM hospedes";
+        try (Connection conexao = Conexao.getConnection();
+             Statement stmt = conexao.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                Hospedes hospede = new Hospedes(
+                        rs.getInt("id_hospede"),
+                        rs.getString("nome"),
+                        rs.getDate("nascimento").toLocalDate(),
+                        rs.getString("telefone"),
+                        rs.getString("tipo_pessoa"),
+                        rs.getString("cpf"),
+                        rs.getString("cnpj")
+                );
+                hospedesList.add(hospede);
+            }
+            tabelaHospedes.setItems(hospedesList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Método de filtro de pesquisa
+    private void filtrarTabela(String filtro) {
+        ObservableList<Hospedes> resultados = FXCollections.observableArrayList();
+
+        String query = "SELECT * FROM hospedes WHERE " +
+                "CAST(id_hospede AS CHAR) LIKE ? OR " +
+                "nome LIKE ? OR " +
+                "telefone LIKE ? OR " +
+                "cpf LIKE ? OR " +
+                "cnpj LIKE ?";
+
+        try (Connection conn = Conexao.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            // Configura todos os parâmetros com o filtro
+            for (int i = 1; i <= 5; i++) {
+                stmt.setString(i, "%" + filtro + "%");
+            }
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Hospedes hospede = new Hospedes(
+                        rs.getInt("id_hospede"),
+                        rs.getString("nome"),
+                        rs.getDate("nascimento").toLocalDate(),
+                        rs.getString("telefone"),
+                        rs.getString("tipo_pessoa"),
+                        rs.getString("cpf"),
+                        rs.getString("cnpj")
+                );
+                resultados.add(hospede);
+            }
+
+            // Atualiza a tabela com os resultados filtrados
+            tabelaHospedes.setItems(resultados);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     // Método para o botão Cadastrar
     @FXML
     private void handleCadastrarAction() {
-        // Implementar cadastro de um novo quarto
-        System.out.println("Cadastrar novo quarto");
-        // Você pode abrir um formulário para o cadastro de um quarto
+        // Implementar cadastro de um novo hóspede
+        System.out.println("Cadastrar novo hóspede");
+        // Você pode abrir um formulário para o cadastro de um hóspede
     }
 
     // Método para o botão Editar
     @FXML
     private void handleEditarAction() {
-        Quartos quartoSelecionado = tableViewQuartos.getSelectionModel().getSelectedItem();
-        if (quartoSelecionado != null) {
-            System.out.println("Editar quarto: " + quartoSelecionado.getNome());
-            // Aqui você pode abrir um formulário para editar as informações do quarto
+        Hospedes hospedeSelecionado = tabelaHospedes.getSelectionModel().getSelectedItem();
+        if (hospedeSelecionado != null) {
+            System.out.println("Editar hóspede: " + hospedeSelecionado.getNome());
+            // Aqui você pode abrir um formulário para editar as informações do hóspede
         } else {
-            System.out.println("Nenhum quarto selecionado.");
+            System.out.println("Nenhum hóspede selecionado.");
         }
     }
 
@@ -174,24 +204,24 @@ public class DispQuartosController {
 
     @FXML
     private void handleExcluirAction() {
-        Quartos quartoSelecionado = tableViewQuartos.getSelectionModel().getSelectedItem();
-        if (quartoSelecionado != null) {
-            String deleteQuery = "DELETE FROM quartos WHERE id_quarto = ?";
+        Hospedes hospedeSelecionado = tabelaHospedes.getSelectionModel().getSelectedItem();
+        if (hospedeSelecionado != null) {
+            String deleteQuery = "DELETE FROM hospedes WHERE id_hospede = ?";
             try (Connection conn = Conexao.getConnection();
                  PreparedStatement pstmt = conn.prepareStatement(deleteQuery)) {
 
-                pstmt.setInt(1, quartoSelecionado.getIdQuarto());
+                pstmt.setInt(1, hospedeSelecionado.getId());
                 pstmt.executeUpdate();
-                quartosList.remove(quartoSelecionado); // Atualiza a lista na UI
-                System.out.println("Quarto excluído: " + quartoSelecionado.getNome());
+                hospedesList.remove(hospedeSelecionado); // Atualiza a lista na UI
+                System.out.println("Hóspede excluído: " + hospedeSelecionado.getNome());
 
             } catch (SQLIntegrityConstraintViolationException e) {
-                mostrarMensagem("Erro: Quarto vinculado a uma reserva. Delete não permitido.");
+                mostrarMensagem("Erro: Hóspede vinculado a uma reserva. Delete não permitido.");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("Nenhum quarto selecionado para excluir.");
+            System.out.println("Nenhum hóspede selecionado para excluir.");
         }
     }
 
