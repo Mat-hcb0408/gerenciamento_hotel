@@ -237,4 +237,44 @@ public class GerencHospedesController {
         }
     }
 
+    @FXML
+    private void handleExportarCSV() {
+        try {
+            // Cria o FileChooser para salvar o arquivo CSV
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+
+            // Define o nome padrão para o arquivo
+            fileChooser.setInitialFileName("relatorio_hospedes.csv");
+
+            // Abre a janela de diálogo para salvar o arquivo
+            File file = fileChooser.showSaveDialog(null);
+
+            if (file != null) {
+                // Cria a lista de dados para exportar
+                List<String[]> data = new ArrayList<>();
+                data.add(new String[]{"ID", "Nome", "Nascimento", "Telefone", "CPF", "CNPJ"});
+
+                // Adiciona os dados dos hóspedes
+                for (Hospedes h : hospedesList) {
+                    data.add(new String[]{
+                            String.valueOf(h.getId()),
+                            h.getNome(),
+                            h.getNascimento().toString(),
+                            h.getTelefone(),
+                            h.getCpf(),
+                            h.getCnpj()
+                    });
+                }
+
+                // Exporta os dados para o arquivo escolhido
+                CsvExporter.export(file.getAbsolutePath(), data);
+                System.out.println("CSV exportado com sucesso para: " + file.getAbsolutePath());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
