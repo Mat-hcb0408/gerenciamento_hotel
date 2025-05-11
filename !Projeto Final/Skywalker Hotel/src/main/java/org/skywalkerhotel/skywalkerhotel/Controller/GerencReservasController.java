@@ -5,16 +5,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.skywalkerhotel.skywalkerhotel.Directory.Conexao;
+import org.skywalkerhotel.skywalkerhotel.Model.Entitys.Quartos;
 import org.skywalkerhotel.skywalkerhotel.Model.Entitys.Reservas;
 import org.skywalkerhotel.skywalkerhotel.Model.Utils.JanelaUtil;
 
+import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 
@@ -57,6 +62,7 @@ public class GerencReservasController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         JanelaUtil.trocarCenaComEstado(stage, "/org/skywalkerhotel/skywalkerhotel/Fxml/Home.fxml");
     }
+
 
     private void configurarEfeitosHover() {
         Button[] botoes = {cadastrarButton, editarButton, excluirButton};
@@ -178,19 +184,27 @@ public class GerencReservasController {
 
 
     @FXML
-    private void handleCadastrarAction() {
-        System.out.println("Cadastrar nova reserva");
-        // Implementar cadastro de uma nova reserva
+    private void handleCadastrarAction(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        JanelaUtil.trocarCenaComEstado(stage, "/org/skywalkerhotel/skywalkerhotel/Fxml/Check-in.fxml");
     }
 
     @FXML
-    private void handleEditarAction() {
-        Reservas reservaSelecionada = tabelaReservas.getSelectionModel().getSelectedItem();
-        if (reservaSelecionada != null) {
-            System.out.println("Editar reserva: " + reservaSelecionada.getIdReserva());
-            // Implementar lógica de edição da reserva
-        } else {
-            System.out.println("Nenhuma reserva selecionada.");
+    private void handleEditarAction(ActionEvent event) {
+        Reservas reservasSelecionado=tabelaReservas.getSelectionModel().getSelectedItem();
+        if (reservasSelecionado!=null){
+            try {
+                FXMLLoader loader=new FXMLLoader(getClass().getResource("/org/skywalkerhotel/skywalkerhotel/Fxml/UpdateReservas.fxml"));
+                Parent root=loader.load();
+                UpdateReservasController controller=loader.getController();
+
+                controller.setReservas(reservasSelecionado, this::loadReservasFromDatabase);
+                Stage stage=new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
         }
     }
 
