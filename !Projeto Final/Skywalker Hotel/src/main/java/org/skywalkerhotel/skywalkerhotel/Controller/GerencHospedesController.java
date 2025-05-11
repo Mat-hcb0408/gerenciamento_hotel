@@ -5,7 +5,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -16,8 +19,10 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.skywalkerhotel.skywalkerhotel.Directory.Conexao;
 import org.skywalkerhotel.skywalkerhotel.Model.Entitys.Hospedes;
+import org.skywalkerhotel.skywalkerhotel.Model.Entitys.Quartos;
 import org.skywalkerhotel.skywalkerhotel.Model.Utils.JanelaUtil;
 
+import java.io.IOException;
 import java.sql.*;
 
 public class GerencHospedesController {
@@ -183,13 +188,21 @@ public class GerencHospedesController {
 
     // Método para o botão Editar
     @FXML
-    private void handleEditarAction() {
-        Hospedes hospedeSelecionado = tabelaHospedes.getSelectionModel().getSelectedItem();
-        if (hospedeSelecionado != null) {
-            System.out.println("Editar hóspede: " + hospedeSelecionado.getNome());
-            // Aqui você pode abrir um formulário para editar as informações do hóspede
-        } else {
-            System.out.println("Nenhum hóspede selecionado.");
+    private void handleEditarAction(ActionEvent event) {
+        Hospedes hospedeSelecionado=tabelaHospedes.getSelectionModel().getSelectedItem();
+        if (hospedeSelecionado!=null){
+            try {
+                FXMLLoader loader=new FXMLLoader(getClass().getResource("/org/skywalkerhotel/skywalkerhotel/Fxml/UpdateHospedes.fxml"));
+                Parent root=loader.load();
+                UpdateHospedeController controller=loader.getController();
+
+                controller.setHospede(hospedeSelecionado, this::loadHospedesFromDatabase);
+                Stage stage=new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
         }
     }
 
