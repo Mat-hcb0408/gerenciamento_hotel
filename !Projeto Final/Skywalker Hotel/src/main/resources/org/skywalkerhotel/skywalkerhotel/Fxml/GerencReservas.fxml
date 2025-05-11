@@ -32,6 +32,7 @@
             <Button fx:id="cadastrarButton" prefHeight="35.0" styleClass="custom-button" text="Cadastrar" onAction="#handleCadastrarAction"/>
             <Button fx:id="editarButton" prefHeight="35.0" styleClass="custom-button" text="Editar" onAction="#handleEditarAction"/>
             <Button fx:id="excluirButton" prefHeight="35.0" styleClass="custom-button" text="Excluir" onAction="#handleExcluirAction"/>
+            <Button fx:id="exportarCSVButton" prefHeight="35.0" styleClass="custom-button" text="Exportar" onAction="#handleExportarCSV"/>
         </HBox>
 
         <!-- Tabela -->
