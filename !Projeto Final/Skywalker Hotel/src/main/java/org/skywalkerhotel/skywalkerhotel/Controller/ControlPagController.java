@@ -18,16 +18,25 @@ import java.time.LocalDate;
 
 public class ControlPagController {
 
-    @FXML private TableView<Pagamentos> tableViewPagamentos;
-    @FXML private TableColumn<Pagamentos, Integer> colId;
-    @FXML private TableColumn<Pagamentos, LocalDate> colDataPagamento;
-    @FXML private TableColumn<Pagamentos, String> colDescricao;
-    @FXML private TableColumn<Pagamentos, String> colTipoDespesa;
-    @FXML private TableColumn<Pagamentos, Double> colPrecoQuarto;
-    @FXML private TableColumn<Pagamentos, Double> colValorPagamento;
-    @FXML private TableColumn<Pagamentos, Double> colTotalPagamento;
+    @FXML
+    private TableView<Pagamentos> tableViewPagamentos;
+    @FXML
+    private TableColumn<Pagamentos, Integer> colId;
+    @FXML
+    private TableColumn<Pagamentos, LocalDate> colDataPagamento;
+    @FXML
+    private TableColumn<Pagamentos, String> colDescricao;
+    @FXML
+    private TableColumn<Pagamentos, String> colTipoDespesa;
+    @FXML
+    private TableColumn<Pagamentos, Double> colPrecoQuarto;
+    @FXML
+    private TableColumn<Pagamentos, Double> colValorPagamento;
+    @FXML
+    private TableColumn<Pagamentos, Double> colTotalPagamento;
 
-    @FXML private TextField txtPesquisar;
+    @FXML
+    private TextField txtPesquisar;
 
     private ObservableList<Pagamentos> pagamentosList;
 
@@ -78,7 +87,7 @@ public class ControlPagController {
     private void filtrarTabela(String filtro) {
         ObservableList<Pagamentos> resultados = FXCollections.observableArrayList();
 
-        String query="SELECT * FROM pagamentos WHERE " +
+        String query = "SELECT * FROM pagamentos WHERE " +
                 "CAST(id_pagamento AS CHAR) LIKE ? OR " +
                 "data_pagamento LIKE ? OR " +
                 "descricao_pagamento LIKE ? OR " +
@@ -87,7 +96,7 @@ public class ControlPagController {
                 "valor_pagamento LIKE ? OR " +
                 "total_pagamento LIKE ?";
 
-        try (Connection conn= Conexao.getConnection();
+        try (Connection conn = Conexao.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
             for (int i = 1; i <= 7; i++) {
@@ -96,8 +105,8 @@ public class ControlPagController {
 
             ResultSet rs = stmt.executeQuery();
 
-            while (rs.next()){
-                Pagamentos c=new Pagamentos(
+            while (rs.next()) {
+                Pagamentos c = new Pagamentos(
                         rs.getInt("id_pagamento"),
                         rs.getDate("data_pagamento").toLocalDate(),
                         rs.getString("descricao_pagamento"),
@@ -109,7 +118,7 @@ public class ControlPagController {
                 resultados.add(c);
             }
             this.tableViewPagamentos.setItems(resultados);
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -141,7 +150,14 @@ public class ControlPagController {
         }
     }
 
-    // Método para o botão Excluir
+    private void mostrarMensagem(String mensagem) {
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+        alert.setTitle("Informação");
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
+
     @FXML
     private void handleExcluirAction() {
         Pagamentos pagamentoSelecionado = tableViewPagamentos.getSelectionModel().getSelectedItem();
@@ -154,6 +170,9 @@ public class ControlPagController {
                 pstmt.executeUpdate();
                 pagamentosList.remove(pagamentoSelecionado); // Atualiza a lista na UI
                 System.out.println("Pagamento excluído: " + pagamentoSelecionado.getDescricaoPagamento());
+
+            } catch (SQLIntegrityConstraintViolationException e) {
+                mostrarMensagem("Erro: Pagamento vinculado a uma reserva. Delete não permitido.");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
