@@ -51,6 +51,8 @@ public class CadastroHospedesController {
         configurarRestricoesDeNascimento();
         configureTipoPessoaField(tipoPessoaField, tipoPessoaComboBox);
         configurarListeners();
+        configureCpfCnpjField(tipoPessoaField,tipoPessoaComboBox);
+        PhoneLimiter.apply(telefoneField);
     }
 
     @FXML
@@ -116,6 +118,72 @@ public class CadastroHospedesController {
             }
         });
     }
+    public static void configureCpfCnpjField(TextField cpfField, ComboBox<String> tipoDocumento) {
+        // Adiciona um listener para a mudança na seleção do ComboBox
+        tipoDocumento.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                // Limpar o campo de texto ao trocar a seleção
+                cpfField.clear();
+
+                // Alterar o comportamento do campo de acordo com a seleção
+                if (newValue.equals("Física")) {
+                    cpfField.setPromptText("Digite o CPF (11 dígitos)");
+                    configureCpfField(cpfField);
+                } else if (newValue.equals("Jurídica")) {
+                    cpfField.setPromptText("Digite o CNPJ (14 dígitos)");
+                    configureCnpjField(cpfField);
+                }
+            }
+        });
+
+        // Verifica a quantidade de caracteres do CPF/CNPJ
+        cpfField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (tipoDocumento.getValue() != null) {
+                if (tipoDocumento.getValue().equals("Física") && newValue.length() > 11) {
+                    cpfField.setText(newValue.substring(0, 11)); // Limita a 11 caracteres
+                } else if (tipoDocumento.getValue().equals("Jurídica") && newValue.length() > 14) {
+                    cpfField.setText(newValue.substring(0, 14)); // Limita a 14 caracteres
+                }
+            }
+        });
+    }
+
+    private static void configureCpfField(TextField cpfField) {
+        // Permite apenas números no CPF
+        cpfField.setTextFormatter(new TextFormatter<>(change -> {
+            change.setText(change.getText().replaceAll("[^0-9]", ""));
+            return change;
+        }));
+    }
+
+    private static void configureCnpjField(TextField cpfField) {
+        // Permite apenas números no CNPJ
+        cpfField.setTextFormatter(new TextFormatter<>(change -> {
+            change.setText(change.getText().replaceAll("[^0-9]", ""));
+            return change;
+        }));
+    }
+
+    public class PhoneLimiter {
+
+        public static void apply(TextField textField) {
+            textField.textProperty().addListener((obs, oldValue, newValue) -> {
+                // Remove tudo que não for número
+                String numeric = newValue.replaceAll("[^\\d]", "");
+
+                // Limita a 11 dígitos
+                if (numeric.length() > 11) {
+                    numeric = numeric.substring(0, 11);
+                }
+
+                // Atualiza o campo com o valor limpo
+                if (!newValue.equals(numeric)) {
+                    textField.setText(numeric);
+                    textField.positionCaret(numeric.length());
+                }
+            });
+        }
+    }
 
 
     @FXML
@@ -131,7 +199,11 @@ public class CadastroHospedesController {
             return;
         }
 
-        String insertQuery = "INSERT INTO hospedes (nome, nascimento, telefone, cpf, cnpj) VALUES (?, ?, ?, ?, ?)";
+        String insertQuery = "INSERT INTO hospedes (nome, " +
+                "nascimento, " +
+                "telefone, " +
+                "cpf, " +
+                "cnpj) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(insertQuery)) {
             pstmt.setString(1, nome);
