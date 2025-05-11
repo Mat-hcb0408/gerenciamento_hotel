@@ -164,7 +164,14 @@ public class DispQuartosController {
         }
     }
 
-    // Método para o botão Excluir
+    private void mostrarMensagem(String mensagem) {
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+        alert.setTitle("Informação");
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
+
     @FXML
     private void handleExcluirAction() {
         Quartos quartoSelecionado = tableViewQuartos.getSelectionModel().getSelectedItem();
@@ -177,6 +184,9 @@ public class DispQuartosController {
                 pstmt.executeUpdate();
                 quartosList.remove(quartoSelecionado); // Atualiza a lista na UI
                 System.out.println("Quarto excluído: " + quartoSelecionado.getNome());
+
+            } catch (SQLIntegrityConstraintViolationException e) {
+                mostrarMensagem("Erro: Quarto vinculado a uma reserva. Delete não permitido.");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -184,4 +194,5 @@ public class DispQuartosController {
             System.out.println("Nenhum quarto selecionado para excluir.");
         }
     }
+
 }
