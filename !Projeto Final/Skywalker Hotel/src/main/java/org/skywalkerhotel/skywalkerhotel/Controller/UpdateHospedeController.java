@@ -56,12 +56,19 @@ public class UpdateHospedeController {
         this.hospedeSelecionado=hospedes;
         this.onUpdateCallback=onUpdateCallback;
 
+        String cpf = hospedes.getCpf();
+        String cnpj = hospedes.getCnpj();
+
         nomeHospedeField.setText(hospedes.getNome());
         nascimentoPicker.setValue(LocalDate.parse(hospedes.getNascimento()));
         telefoneField.setText(hospedes.getTelefone());
-        tipoPessoaField.setText(hospedes.getCpf().isEmpty() ? hospedes.getCnpj():hospedes.getCpf());
-        tipoPessoaComboBox.setValue(hospedes.getCpf().isEmpty() ? "CNPJ":"CPF");
-    }
+        tipoPessoaField.setText((cpf != null && !cpf.isEmpty()) ? cpf : (cnpj != null ? cnpj : ""));
+
+        String tipoDocumento = (cpf != null && !cpf.isEmpty()) ? cpf : ((cnpj != null && !cnpj.isEmpty()) ? cnpj : "");
+        String tipoSelecionado = (cpf != null && !cpf.isEmpty()) ? "CPF" : "CNPJ";
+
+        tipoPessoaField.setText(tipoDocumento);
+        tipoPessoaComboBox.setValue(tipoSelecionado);    }
 
     @FXML
     public void initialize() {
@@ -69,6 +76,8 @@ public class UpdateHospedeController {
         configurarEfeitosHover();
         configurarListeners();
         popularComboBox();
+        configureCpfCnpjField(tipoPessoaField, tipoPessoaComboBox);
+        configurePhoneField(telefoneField); // Chama a função para configurar o limite de telefone
     }
 
     private void popularComboBox(){
@@ -115,6 +124,58 @@ public class UpdateHospedeController {
 
         button.setOnMouseEntered(e -> scaleUp.playFromStart());
         button.setOnMouseExited(e -> scaleDown.playFromStart());
+    }
+    public static void configureCpfCnpjField(TextField cpfField, ComboBox<String> tipoDocumento) {
+        tipoDocumento.valueProperty().addListener((observable, oldValue, newValue) -> {
+            cpfField.clear();
+            if (newValue != null) {
+                if (newValue.equals("CPF")) {
+                    cpfField.setPromptText("Digite o CPF (11 dígitos)");
+                    configureCpfField(cpfField);
+                } else if (newValue.equals("CNPJ")) {
+                    cpfField.setPromptText("Digite o CNPJ (14 dígitos)");
+                    configureCnpjField(cpfField);
+                }
+            }
+        });
+
+        cpfField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (tipoDocumento.getValue() != null) {
+                if (tipoDocumento.getValue().equals("CPF") && newValue.length() > 11) {
+                    cpfField.setText(newValue.substring(0, 11));
+                } else if (tipoDocumento.getValue().equals("CNPJ") && newValue.length() > 14) {
+                    cpfField.setText(newValue.substring(0, 14));
+                }
+            }
+        });
+    }
+
+
+    private static void configureCpfField(TextField cpfField) {
+        cpfField.setTextFormatter(new TextFormatter<>(change -> {
+            change.setText(change.getText().replaceAll("[^0-9]", ""));
+            return change;
+        }));
+    }
+
+    private static void configureCnpjField(TextField cpfField) {
+        cpfField.setTextFormatter(new TextFormatter<>(change -> {
+            change.setText(change.getText().replaceAll("[^0-9]", ""));
+            return change;
+        }));
+    }
+
+    private static void configurePhoneField(TextField phoneField) {
+        phoneField.setTextFormatter(new TextFormatter<>(change -> {
+            // Permite apenas números no campo de telefone
+            change.setText(change.getText().replaceAll("[^0-9]", ""));
+
+            // Limita o tamanho do texto a 11 caracteres (pode ser ajustado conforme necessário)
+            if (change.getControlNewText().length() > 11) {
+                change.setText(change.getText().substring(0, 11));
+            }
+            return change;
+        }));
     }
 
     @FXML
