@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.skywalkerhotel.skywalkerhotel.Directory.Conexao;
@@ -20,6 +21,7 @@ import org.skywalkerhotel.skywalkerhotel.Model.Entitys.Reservas;
 import org.skywalkerhotel.skywalkerhotel.Model.Utils.CsvExporter;
 import org.skywalkerhotel.skywalkerhotel.Model.Utils.JanelaUtil;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
@@ -237,28 +239,42 @@ public class GerencReservasController {
     @FXML
     private void handleExportarCSV() {
         try {
-            List<String[]> data = new ArrayList<>();
-            data.add(new String[]{"ID", "Hóspede", "Quarto", "ID Pagamento", "Início", "Fim"});
+            // Cria o FileChooser para salvar o arquivo CSV
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
 
-            for (Reservas r : reservasList) {
-                data.add(new String[]{
-                        String.valueOf(r.getIdReserva()),
-                        r.getNomeHospede(),
-                        r.getNomeQuarto(),
-                        String.valueOf(r.getIdPagamento()),
-                        r.getInicioDataReserva().toString(),
-                        r.getFimDataReserva().toString()
-                });
+            fileChooser.setInitialFileName("relatorio_reservas.csv");
+
+            // Abre a janela de diálogo para salvar o arquivo
+            File file = fileChooser.showSaveDialog(null);
+
+            if (file != null) {
+                // Cria a lista de dados para exportar
+                List<String[]> data = new ArrayList<>();
+                data.add(new String[]{"ID", "Hóspede", "Quarto", "ID Pagamento", "Início", "Fim"});
+
+                // Adiciona os dados das reservas
+                for (Reservas r : reservasList) {
+                    data.add(new String[]{
+                            String.valueOf(r.getIdReserva()),
+                            r.getNomeHospede(),
+                            r.getNomeQuarto(),
+                            String.valueOf(r.getIdPagamento()),
+                            r.getInicioDataReserva().toString(),
+                            r.getFimDataReserva().toString()
+                    });
+                }
+
+                // Exporta os dados para o arquivo escolhido
+                CsvExporter.export(file.getAbsolutePath(), data);
+                System.out.println("CSV exportado com sucesso para: " + file.getAbsolutePath());
             }
-
-            String downloadsPath = System.getProperty("user.home") + "/Downloads/relatorio_reservas.csv";
-            CsvExporter.export(downloadsPath, data);
-            System.out.println("CSV exportado com sucesso para: " + downloadsPath);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
 
 }
