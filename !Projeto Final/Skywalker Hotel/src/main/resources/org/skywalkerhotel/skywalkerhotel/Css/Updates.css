@@ -1,0 +1,173 @@
+/* Fundo geral */
+.anchor-pane {
+    -fx-background-color: #1e1e30;
+}
+
+/* Barra superior */
+.top-bar {
+    -fx-background-color: #2a2a40;
+    -fx-border-radius: 15;
+}
+
+/* Título principal */
+.heading-main {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-family: "Bell MT";
+}
+
+/* Caixa ao centro */
+.form-card {
+    -fx-background-color: #2a2a40;
+    -fx-background-radius: 16;
+    -fx-padding: 30;
+    -fx-max-width: 600;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);
+}
+
+/* Label dos campos */
+.form-label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+/* Campo de entrada (TextField, PasswordField, etc.) */
+.input-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-border-width: 0;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+/* Placeholder */
+.input-field .text {
+    -fx-prompt-text-fill: #ffffff;
+}
+
+/* Quando focado */
+.input-field:focused {
+    -fx-border-color: #7b2cbf;
+    -fx-border-width: 0 0 2 0;
+}
+
+/* Estilo para todas as ComboBoxes */
+.combo-box {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-border-width: 0;
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.7);
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: white;
+    -fx-background-color: #2a2a40;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: #7b2cbf;
+    -fx-background-radius: 0;
+}
+
+.combo-box .arrow {
+    -fx-background-color: white;
+}
+
+.combo-box .list-view {
+    -fx-background-color: #2a2a40;
+    -fx-border-color: #7b2cbf;
+}
+
+.combo-box .list-cell:filled:hover {
+    -fx-background-color: #7b2cbf;
+    -fx-text-fill: white;
+}
+
+.combo-box:focused {
+    -fx-border-color: #7b2cbf;
+    -fx-border-width: 0 0 2 0;
+}
+
+/* DatePicker styling */
+.date-picker {
+    -fx-background-color: white;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+}
+
+.date-picker .arrow-button:hover {
+    -fx-background-color: #9d4edd;
+}
+
+.date-picker .text-field {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
+
+/* Botões roxos com efeito hover */
+.custom-button {
+    -fx-font-family: "Bell MT Bold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #7b2cbf;
+    -fx-background-color: transparent;
+    -fx-border-color: #7b2cbf;
+    -fx-border-radius: 20;
+    -fx-border-width: 2;
+    -fx-cursor: hand;
+    -fx-padding: 8 25;
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(123, 44, 191, 0.3), 5, 0, 0, 2);
+    -fx-transition: all 0.2s ease;
+}
+
+.custom-button:hover {
+    -fx-background-color: #7b2cbf;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(123, 44, 191, 0.5), 8, 0, 0, 3);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.custom-button:pressed {
+    -fx-background-color: #5a189a;
+    -fx-effect: dropshadow(three-pass-box, rgba(123, 44, 191, 0.2), 3, 0, 0, 1);
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+.link-text {
+    -fx-text-fill: gray;
+    -fx-font-size: 11px;
+}
+
+.scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar:vertical,
+.scroll-pane .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .thumb {
+    -fx-background-color: #7b2cbf;
+    -fx-background-insets: 2;
+    -fx-background-radius: 5;
+}
+
+.scroll-pane .track {
+    -fx-background-color: #2a2a40;
+    -fx-background-radius: 5;
+}
+
