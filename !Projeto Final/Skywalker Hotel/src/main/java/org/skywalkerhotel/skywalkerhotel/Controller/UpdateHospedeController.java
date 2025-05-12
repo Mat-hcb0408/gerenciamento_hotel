@@ -21,6 +21,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Locale;
+import java.util.function.UnaryOperator;
 
 public class UpdateHospedeController {
 
@@ -60,7 +61,7 @@ public class UpdateHospedeController {
         String cnpj = hospedes.getCnpj();
 
         nomeHospedeField.setText(hospedes.getNome());
-        nascimentoPicker.setValue(LocalDate.parse(hospedes.getNascimento()));
+        nascimentoPicker.setValue(hospedes.getNascimento());
         telefoneField.setText(hospedes.getTelefone());
         tipoPessoaField.setText((cpf != null && !cpf.isEmpty()) ? cpf : (cnpj != null ? cnpj : ""));
 
@@ -86,6 +87,7 @@ public class UpdateHospedeController {
         tipoPessoaComboBox.setValue("CPF");
 
     }
+
     @FXML
     private void handleVoltarAction(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -166,17 +168,25 @@ public class UpdateHospedeController {
     }
 
     private static void configurePhoneField(TextField phoneField) {
-        phoneField.setTextFormatter(new TextFormatter<>(change -> {
-            // Permite apenas números no campo de telefone
-            change.setText(change.getText().replaceAll("[^0-9]", ""));
+        UnaryOperator<TextFormatter.Change> filter = change -> {
+            String newText = change.getControlNewText();
 
-            // Limita o tamanho do texto a 11 caracteres (pode ser ajustado conforme necessário)
-            if (change.getControlNewText().length() > 11) {
-                change.setText(change.getText().substring(0, 11));
+            // Permite apenas números
+            if (!newText.matches("\\d*")) {
+                return null;
             }
+
+            // Limita a 11 caracteres
+            if (newText.length() > 11) {
+                return null;
+            }
+
             return change;
-        }));
+        };
+
+        phoneField.setTextFormatter(new TextFormatter<>(filter));
     }
+
 
     @FXML
     private void handleSalvarAction() {
