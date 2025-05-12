@@ -136,12 +136,10 @@ public class ControlPagController {
         JanelaUtil.trocarCenaComEstado(stage, "/org/skywalkerhotel/skywalkerhotel/Fxml/Home.fxml");
     }
 
-    // Método para o botão Cadastrar
     @FXML
-    private void handleCadastrarAction() {
-        // Implementar cadastro de um novo pagamento
-        System.out.println("Cadastrar novo pagamento");
-        // Você pode abrir um formulário para o cadastro de um pagamento
+    private void handleCadastrarAction(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        JanelaUtil.trocarCenaComEstado(stage, "/org/skywalkerhotel/skywalkerhotel/Fxml/Check-in.fxml");
     }
 
     // Método para o botão Editar
