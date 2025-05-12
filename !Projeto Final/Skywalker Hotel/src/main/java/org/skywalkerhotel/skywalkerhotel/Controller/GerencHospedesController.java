@@ -197,7 +197,7 @@ public class GerencHospedesController {
         Hospedes hospedeSelecionado=tabelaHospedes.getSelectionModel().getSelectedItem();
         if (hospedeSelecionado!=null){
             try {
-                FXMLLoader loader=new FXMLLoader(getClass().getResource("/org/skywalkerhotel/skywalkerhotel/Fxml/UpdateHospedes.fxml"));
+                FXMLLoader loader=new FXMLLoader(getClass().getResource("/org/skywalkerhotel/skywalkerhotel/Fxml/UpdateHospede.fxml"));
                 Parent root=loader.load();
                 UpdateHospedeController controller=loader.getController();
 
